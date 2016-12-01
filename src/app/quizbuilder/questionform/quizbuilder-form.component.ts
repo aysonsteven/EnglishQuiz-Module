@@ -30,7 +30,7 @@ export class QuizbuilderComponent implements OnInit {
     this.question.add( this.questionForm, data=>{
       console.log( 'question add susccessfull: ' + JSON.stringify( data ) );
       this.onCLickReset();
-      this.routes.navigate(['home']);
+      this.routes.navigate(['home'])
     }, error => {
       alert ( error );
     })

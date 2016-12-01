@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, Params} from '@angular/router';
+import { Router } from '@angular/router';
 import { PAGE_DATA, POSTS } from '../../quiz-module/interfaces/quiz-module.interface'
 import { Quiz } from '../../quiz-module/services/quiz.service';
 
@@ -12,7 +12,7 @@ export class QuestionListComponent implements OnInit {
 
   questionsList = <POSTS>{};
 
-  constructor( private route: Router, private questions: Quiz, private params: Params ) { 
+  constructor( private route: Router, private questions: Quiz ) { 
     this.getQuestions();
   }
 
@@ -32,7 +32,7 @@ export class QuestionListComponent implements OnInit {
     })
   }
   onClickEdit( val ){
-    this.route.navigate(['add'])
+    // this.route.navigate(['add'])
     
   }
   getQuestions(){
