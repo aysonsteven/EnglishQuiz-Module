@@ -1,3 +1,57 @@
-<p>
-  quizbuilder works!
-</p>
+<div class="container-fluid">
+  <form>
+    <div class="form-group row">
+      <label for="id" class="col-xs-3 col-form-label">Question</label>
+      <div class="col-xs-9">
+        <textarea class="form-control" id="exampleTextarea" rows="5" [(ngModel)]="questionForm.content" name="question"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="choice1" class="col-xs-3 col-form-label">Choice1</label>
+      <div class="col-xs-9">
+        <input class="form-control" type="text" id="choice1" [(ngModel)]="questionForm.varchar_1" name="choice1">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="choice2" class="col-xs-3 col-form-label">Choice2</label>
+      <div class="col-xs-9">
+        <input class="form-control" type="text" id="choice2" [(ngModel)]="questionForm.varchar_2" name="choice2">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="choice3" class="col-xs-3 col-form-label">Choice3</label>
+      <div class="col-xs-9">
+        <input class="form-control" type="text" id="choice3" [(ngModel)]="questionForm.varchar_3" name="choice3">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="choice4" class="col-xs-3 col-form-label">Choice4</label>
+      <div class="col-xs-9">
+        <input class="form-control" type="text" id="choice4" [(ngModel)]="questionForm.varchar_4" name="choice4">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="answer" class="col-xs-3 col-form-label">Answer</label>
+      <div class="col-xs-9">
+        <select class="form-control" id="exampleSelect2" [(ngModel)]="questionForm.int_1" name="answer">
+          <option *ngIf="questionForm.varchar_1">{{ questionForm.varchar_1 }}</option>
+          <option *ngIf="questionForm.varchar_2">>{{ questionForm.varchar_2 }}</option>
+          <option *ngIf="questionForm.varchar_3">>{{ questionForm.varchar_3 }}</option>
+          <option *ngIf="questionForm.varchar_4">{{ questionForm.varchar_4 }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-xs-9">
+        <button class="btn btn-primary" (click)="onClickCreate()">Login</button>
+      </div>
+    </div>
+
+  </form>
+</div>
