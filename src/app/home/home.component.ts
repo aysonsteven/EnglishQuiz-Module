@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User, LOGIN_DATA } from '../quiz-module/services/user.service';
+import { User, MEMBER_LOGIN_DATA } from '../quiz-module/services/user.service';
 import { AuthsessionService } from '../services/auth-session.service';
 
 @Component({

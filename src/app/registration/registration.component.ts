@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User, User_Data } from '../quiz-module/services/user.service';
+import { User, MEMBER_DATA } from '../quiz-module/services/user.service';
 import { Router } from '@angular/router';
 import { AuthsessionService } from '../services/auth-session.service';
 
@@ -10,7 +10,7 @@ import { AuthsessionService } from '../services/auth-session.service';
 })
 export class RegistrationComponent implements OnInit {
   message: string;
-  registrationForm : User_Data = <User_Data> {};
+  registrationForm : MEMBER_DATA = <MEMBER_DATA> {};
 
   constructor(
     private user: User,
@@ -49,7 +49,4 @@ export class RegistrationComponent implements OnInit {
   }
   test(){
   }
-
-
-
 }

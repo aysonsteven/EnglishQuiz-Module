@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User, User_Data, LOGIN_DATA } from '../quiz-module/services/user.service';
+import { User, MEMBER_DATA, MEMBER_LOGIN_DATA } from '../quiz-module/services/user.service';
 import { Router } from '@angular/router';
 import { AuthsessionService } from '../services/auth-session.service';
 
@@ -11,7 +11,7 @@ import { AuthsessionService } from '../services/auth-session.service';
 export class AuthenticationComponent implements OnInit {
   status : { loader?; error?; success?; } = {};
   loading:boolean = true;
-  loginForm: LOGIN_DATA = <LOGIN_DATA> {};
+  loginForm: MEMBER_LOGIN_DATA = <MEMBER_LOGIN_DATA> {};
   constructor(
     private user: User,
     private routes: Router,
@@ -37,6 +37,6 @@ export class AuthenticationComponent implements OnInit {
   }
 
   onClickReset(){
-    this.loginForm =  <LOGIN_DATA> {};
+    this.loginForm =  <MEMBER_LOGIN_DATA> {};
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { User_Data, LOGIN_DATA,  } from '../interfaces/quiz-module.interface';
+import { MEMBER_DATA, MEMBER_LOGIN_DATA,  } from '../interfaces/quiz-module.interface';
 import { API, PHILGO_MEMBER_LOGIN } from '../server';
 export * from '../interfaces/quiz-module.interface';
 import * as _ from 'lodash';
@@ -12,7 +12,7 @@ export class User extends API{
         super( http );
     }
 
-    getLoginBody( loginData: LOGIN_DATA ){
+    getLoginBody( loginData: MEMBER_LOGIN_DATA ){
         loginData['action'] = 'login';
         return loginData;
     }
@@ -22,11 +22,11 @@ export class User extends API{
         localStorage.setItem( PHILGO_MEMBER_LOGIN, str );
     }
 
-    login( loginData: LOGIN_DATA, success: ( login: LOGIN_DATA ) => void, error: ( error: string ) => void, complete?: () => void){
+    login( loginData: MEMBER_LOGIN_DATA, success: ( login: MEMBER_LOGIN_DATA ) => void, error: ( error: string ) => void, complete?: () => void){
         let body = this.getLoginBody( loginData );
         this.write( body, data =>{
             console.log( 'login(): data : ' + data );
-            let login: LOGIN_DATA = {
+            let login: MEMBER_LOGIN_DATA = {
                 id: data.user_id,
                 session_id: data.session_id
             };
@@ -36,7 +36,7 @@ export class User extends API{
          complete);
     }
 
-    register( userData: User_Data, success: ( login: LOGIN_DATA) => void, error: ( error: string ) => void, complete?: ()=> void){
+    register( userData: MEMBER_DATA, success: ( login: MEMBER_LOGIN_DATA) => void, error: ( error: string ) => void, complete?: ()=> void){
         userData['action'] = 'member_register_submit';
         this.write( userData, res=>{
             this.setLoginData( res );
@@ -57,7 +57,7 @@ export class User extends API{
         return this.url + "?module=ajax&submit=1&action=" + qs;
     }
 
-    data( success: ( data: User_Data ) => void, error?: ( e: string ) => void, complete?: ()=> void){
+    data( success: ( data: MEMBER_DATA ) => void, error?: ( e: string ) => void, complete?: ()=> void){
         let login = this.logged();
         if( login ){
             let url = this.getUrl( 'version&user_extra=1&id=' + login.id + '&session_id=' + login.session_id );

@@ -1,3 +1,10 @@
 <div class="container-fluid">
   <button class="btn btn-secondary btn-sm" (click)="goToQuestionform()">Add Questions</button>
+  <ul>
+    <li *ngFor="let q of questionsList.posts; let i = index">
+      {{ i + 1 }}. {{ q.content }} <button class="btn btn-default btn-sm" (click)="onClickDelete(q.idx)">DELETE</button> | 
+      <button class="btn btn-default btn-sm" (click)="onClickEdit(q.idx)">EDIT</button>
+      
+    </li>
+  </ul>
 </div>

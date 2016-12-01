@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { API } from '../server';
-import { PAGE_DATA, POSTS, QUESTION_DATA, POST_RESPONSE} from '../interfaces/quiz-module.interface';
+import { PAGE_DATA, POSTS, POST_DATA, POST_RESPONSE} from '../interfaces/quiz-module.interface';
 export * from '../interfaces/quiz-module.interface';
 import * as _ from 'lodash';
 
@@ -13,7 +13,7 @@ export class Quiz extends API {
         super( http );
     }
 
-    hasError( data: QUESTION_DATA ): boolean | string{
+    hasError( data: POST_DATA ): boolean | string{
         if ( data.id === void 0 ) return 'id-is-empty';
         if ( data.session_id === void 0 ) return 'session_id-is-empty';
         if ( data.action === void 0 ) return 'action-is-empty';
@@ -36,11 +36,11 @@ export class Quiz extends API {
         if ( data.content === void 0 ) return 'content-is-empty';
         return false;
     }
-    getError( data: QUESTION_DATA ): string{
+    getError( data: POST_DATA ): string{
         return <string> this.hasError( data );
     }
 
-    add( data: QUESTION_DATA, success: ( res: POST_RESPONSE ) => void, error?: ( e: string ) => void, complete?: () => void){
+    add( data: POST_DATA, success: ( res: POST_RESPONSE ) => void, error?: ( e: string ) => void, complete?: () => void){
         data['action'] = 'post_write_submit'
         let login = this.getLoginData();
         data.id = login.id;
@@ -51,7 +51,7 @@ export class Quiz extends API {
         error,
         complete );
     }
-    edit( data: QUESTION_DATA, success: ( res: POST_RESPONSE ) => void, error?: ( e: string ) => void, complete?: () => void){
+    edit( data: POST_DATA, success: ( res: POST_RESPONSE ) => void, error?: ( e: string ) => void, complete?: () => void){
         data['action'] = 'post_edit_submit';
         let login = this.getLoginData();
         data.id = login.id;

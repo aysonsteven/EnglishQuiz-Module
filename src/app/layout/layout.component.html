@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
     <header><!-- header here --></header>
 <br/>
     <nav class="navbar navbar-dark bg-primary">
@@ -8,11 +8,8 @@
         <li *ngIf="!sessionSrvc.sessionData" class="nav-item" ><a class="nav-link" routerLink="register">Register</a></li>
         <li *ngIf="sessionSrvc.sessionData" class="nav-item" ><a class="nav-link" routerLink="" (click)="onClickLogout()">logout</a></li>
         </ul>
-        
     </nav>
-
 <br>
-
     <main>
         <router-outlet></router-outlet>
     </main>

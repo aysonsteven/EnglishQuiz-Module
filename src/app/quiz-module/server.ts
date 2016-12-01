@@ -1,5 +1,5 @@
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { LOGIN_DATA } from './interfaces/quiz-module.interface';
+import { MEMBER_LOGIN_DATA } from './interfaces/quiz-module.interface';
 import 'rxjs/add/operator/timeout';
 export const PHILGO_MEMBER_LOGIN = 'philgo-login';
 
@@ -11,7 +11,7 @@ export class API {
 
     constructor( public http: Http ){}
 
-    getLogin():  LOGIN_DATA{
+    getLogin():  MEMBER_LOGIN_DATA{
         return this.getLogin();
     }
 
@@ -19,7 +19,7 @@ export class API {
         localStorage.setItem( cache_id, JSON.stringify(data) );
     }
 
-    getLoginData(): LOGIN_DATA{
+    getLoginData(): MEMBER_LOGIN_DATA{
         let data = localStorage.getItem( PHILGO_MEMBER_LOGIN );
         try{
             let login = JSON.parse( data );

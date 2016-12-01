@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthsessionService } from '../services/auth-session.service';
-import { User, User_Data } from '../quiz-module/services/user.service';
+import { User, MEMBER_DATA } from '../quiz-module/services/user.service';
 import { Router } from '@angular/router';
 
 @Component({
