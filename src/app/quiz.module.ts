@@ -16,7 +16,8 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { QuiztestComponent } from './quiztest/quiztest.component';
-import { QuizbuilderComponent } from './quizbuilder/quizbuilder.component';
+import { QuizbuilderComponent } from './quizbuilder/questionform/quizbuilder-form.component';
+import { QuestionListComponent } from './quizbuilder/question-list/question-list.component';
 
 
 
@@ -28,7 +29,8 @@ import { QuizbuilderComponent } from './quizbuilder/quizbuilder.component';
     HomeComponent,
     RegistrationComponent,
     QuiztestComponent,
-    QuizbuilderComponent
+    QuizbuilderComponent,
+    QuestionListComponent
   ],
   imports: [
     BrowserModule,

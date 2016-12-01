@@ -19,7 +19,7 @@
       <div class="col-xs-9">
         <button class="btn btn-primary" *ngIf=" ! status.loader " (click)="onClickLogin()">Login</button>
         <button class="btn btn" *ngIf=" status.loader " disabled (click)="onClickLogin()">Login</button>
-        <button class="btn btn-secondary">Reset</button>
+        <button class="btn btn-secondary" (click)="onClickReset()">Reset</button>
       </div>
     </div>
   

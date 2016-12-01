@@ -35,4 +35,8 @@ export class AuthenticationComponent implements OnInit {
       this.status.loader = false; 
     })
   }
+
+  onClickReset(){
+    this.loginForm =  <LOGIN_DATA> {};
+  }
 }

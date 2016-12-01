@@ -14,7 +14,9 @@ export class LayoutComponent implements OnInit {
     private sessionSrvc: AuthsessionService, 
     private user: User ,
     private route: Router
-    ) { }
+    ) { 
+      
+    }
 
   ngOnInit() {
   }

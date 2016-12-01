@@ -5,13 +5,14 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './home/home.component';
 import { QuiztestComponent } from './quiztest/quiztest.component';
-import { QuizbuilderComponent } from './quizbuilder/quizbuilder.component';
+import { QuizbuilderComponent } from './quizbuilder/questionform/quizbuilder-form.component';
 
 const link: Routes = [
     { path: '', redirectTo:'/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'register', component: RegistrationComponent },
-    { path: 'login', component: AuthenticationComponent }
+    { path: 'login', component: AuthenticationComponent },
+    { path: 'add', component: QuizbuilderComponent }
 ]
 
 @NgModule({

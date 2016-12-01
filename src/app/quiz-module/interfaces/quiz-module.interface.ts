@@ -27,61 +27,7 @@ export interface User_Data {
   name: string;
   email: string;
   mobile?: string;
-  landline?: string;
   gender?: string;
-  birth_year?:string;
-  birth_month?:string;
-  birth_day?:string;
-  birthday?: string;
-
-  address?: string;
-  city?: string;
-  province?: string;
-  country?: string;
-  race?: string;
-  children?: string;
-  height?: number;
-  weight?: number;
-  eye_color?: string;
-  hair_color?: string;
-  religion?: string;
-  relationship?: string;
-  smoking?: string;
-  drinking?: string;
-  look_for?: string;
-  greeting?: string;
-  signature?: string;
-  namecard_title?: string;
-  namecard_company_name?: string;
-  namecard_name?: string;
-  namecard_line?: string;
-  namecard_address?: string;
-  namecard_landline?: string;
-  namecard_mobile?: string;
-  namecard_homepage?: string;
-  namecard_email?: string;
-
-  int_1?: string;
-  int_2?: string;
-  int_3?: string;
-  int_4?: string;
-  int_5?: string;
-  int_6?: string;
-  int_7?: string;
-  int_8?: string;
-  int_9?: string;
-  int_10?: string;
-
-  char_1?: string;
-  char_2?: string;
-  char_3?: string;
-  char_4?: string;
-  char_5?: string;
-  char_6?: string;
-  char_7?: string;
-  char_8?: string;
-  char_9?: string;
-  char_10?: string;
 
   varchar_1?: string;
   varchar_2?: string;
@@ -160,30 +106,11 @@ export interface MEMBER {
     name: string;
     nickname: string;
 };
-export interface COMMENT {
-    bad: string;
-    blind: string;
-    content: string;
-    deleted: string;
-    depth: string;
-    gid: string;
-    good: string;
-    idx: string;
-    idx_member: string;
-    idx_parent: string;
-    idx_root: string;
-    int_10: string;
-    member: MEMBER;
-    photos: string;
-    post_id: string;
-    stamp: string;
-    user_name: string;
-}
+
 export interface POST {
     bad: string;
     blind: string;
     category: string;
-    comments: Array<COMMENT>;
     content: string;
     deleted: string;
     depth: string;
@@ -226,7 +153,7 @@ export interface POSTS extends PHILGO_API_RESPONSE {
 /**
  * Post data structure for create/update
  */
-export interface POST_DATA {
+export interface QUESTION_DATA {
     module?: string; // for crate/update
     action?: string; // for create/update
     id?: string; // user id to create/update.
@@ -243,84 +170,21 @@ export interface POST_DATA {
     group_id?
     category?
     sub_category?
-    reminder?
-    secret?
-    checked?
-    checked_stamp?
-    report?
-    blind?
     no_of_comment?
     no_of_attach?
     no_of_first_image?
     user_domain?
-    user_id?
-    user_password?
-    user_name?
-    user_email?
     subject?
     content?
     content_stripped?
-    link?
-    stamp_update?
-    stamp_last_comment?
     deleted?
-    no_of_view?
-    good?
-    bad?
-    access_code?
-    region?
     int_1?
-    int_2?
-    int_3?
-    int_4?
-    int_5?
-    int_6?
-    int_7?
-    int_8?
-    int_9?
-    int_10?
-    char_1?
-    char_2?
-    char_3?
-    char_4?
-    char_5?
-    char_6?
-    char_7?
-    char_8?
-    char_9?
-    char_10?
     varchar_1?
     varchar_2?
     varchar_3?
     varchar_4?
-    varchar_5?
-    varchar_6?
-    varchar_7?
-    varchar_8?
-    varchar_9?
-    varchar_10?
-    varchar_11?
-    varchar_12?
-    varchar_13?
-    varchar_14?
-    varchar_15?
-    varchar_16?
-    varchar_17?
-    varchar_18?
-    varchar_19?
-    varchar_20?
-    text_1?
-    text_2?
-    text_3?
-    text_4?
-    text_5?
-    text_6?
-    text_7?
-    text_8?
-    text_9?
-    text_10?
 };
 
 export interface POST_RESPONSE extends PHILGO_API_RESPONSE {
-    post: POST_DATA;
+    post: QUESTION_DATA;
 };
