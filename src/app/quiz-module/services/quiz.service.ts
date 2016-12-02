@@ -84,20 +84,22 @@ export class Quiz extends API {
         complete );
     }
 
-    page( data: PAGE_DATA, success: ( res: POSTS ) => void, error?: ( e:string ) => void, complete?: () => void){
+    page( data: PAGE_DATA, successCallback: ( re: POSTS ) => void, errorCallback: ( error: string ) => void ) {
         let url = this.getUrl() + 'post-list&post_id=' + data.post_id + '&page_no=' + data.page_no + '&limit=30';
-        if( data.page_no == 1 ) this.cacheCallback( data.post_id, success );
+        if ( data.page_no == 1 ) this.cacheCallback( data.post_id, successCallback );
 
-        console.log( 'page(): url ' + url );
-        this.get( url, res =>{
+        console.log('page(): url: ', url);
+        this.get( url, re => {
 
-        }, error );
-        this.http.get( url ).subscribe( res =>{
-            console.log( 'post::page() res: ' + res );
-            this.responseData( res, ( posts: POSTS ) => {
-                if( data.page_no == 1) this.saveCache( data.post_id, posts);
-                success( posts );
-            }, error );
-        })
+        }, errorCallback );
+
+        this.http.get( url )
+            .subscribe( re => {
+                console.log('post::page() re: ', re);
+                this.responseData( re, (posts: POSTS) => {
+                    if ( data.page_no == 1 ) this.saveCache( data.post_id, posts );
+                    successCallback( posts );
+                }, errorCallback );
+            });
     }
 }

@@ -1,6 +1,13 @@
 <div class="container-fluid">
   <br/>
+
   <form>
+     <div class="form-group">
+   
+        <div errorwrap *ngIf="error.error">{{ error.error }}</div>
+
+     
+    </div>
      <div class="form-group row">
       <label for="id" class="col-xs-3 col-form-label">UserID</label>
       <div class="col-xs-9">
@@ -8,11 +15,24 @@
       </div>
     </div>
 
+    <div class="form-group">
+   
+        <div errorwrap *ngIf="formStatusuid.userid">{{ formStatusuid.userid }}</div>
+     
+    </div>
+
      <div class="form-group row">
       <label for="password" class="col-xs-3 col-form-label">Password</label>
       <div class="col-xs-9">
         <input class="form-control" [(ngModel)]="loginForm.password"  type="password" id="password" name="password">
       </div>
+    </div>
+
+    <div class="form-group">
+   
+        <div errorwrap *ngIf="formStatuspword.pword">{{ formStatuspword.pword }}</div>
+        <div errorwrap *ngIf="!formStatuspword.pword"></div>
+     
     </div>
 
      <div class="form-group row">

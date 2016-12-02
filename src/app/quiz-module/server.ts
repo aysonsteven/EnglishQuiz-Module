@@ -93,7 +93,7 @@ export class API {
             errMsg = error.message ? error.message : error.toString();
         }
         console.error(errMsg);
-        if ( errorCallback ) errorCallback("http-get/post-subscribe-error may-be-no-internet or wrong-domain or timeout or server-down: " + errMsg);
+        if ( errorCallback ) errorCallback("http-get/post-subscribe-error may-be-no-internet or wrong-domain or timeout or server-down: " );
     }
 
 

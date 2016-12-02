@@ -203,6 +203,11 @@ export interface POST {
     stamp: string;
     subject: string;
     user_name: string;
+    varchar_1?
+    varchar_2?
+    varchar_3?
+    varchar_4
+    int_1
 }
 
 export interface PHOTOS {

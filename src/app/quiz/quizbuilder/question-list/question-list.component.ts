@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PAGE_DATA, POSTS } from '../../quiz-module/interfaces/quiz-module.interface'
-import { Quiz } from '../../quiz-module/services/quiz.service';
+import { PAGE_DATA, POSTS } from '../../../quiz-module/interfaces/quiz-module.interface'
+import { Quiz } from '../../../quiz-module/services/quiz.service';
 
 @Component({
   selector: 'app-question-list',
@@ -21,7 +21,7 @@ export class QuestionListComponent implements OnInit {
 
   goToQuestionform(){
     this.route.navigate(['add']);
-    localStorage.setItem("question-idx", '');
+    localStorage.removeItem('question-idx')
   }
 
   onClickDelete( idxval ){
@@ -41,14 +41,19 @@ export class QuestionListComponent implements OnInit {
     let body = <PAGE_DATA> {
       post_id: 'job',
       page_no: 1,
-      limit: 10
+      limit: void 0
     }
     this.questions.page( body, res=>{
       // this.questionsList = res
       this.questionsList = res;
+      
     }, e=>{
     console.error (e)
     })
+  }
+
+  onClickAddChoices(){
+
   }
 
 }

@@ -1,0 +1,32 @@
+
+  <button class="btn btn-secondary btn-sm" (click)="goToQuestionform()">Add Questions</button>
+  <br/>
+  <ul>
+    <!--<li *ngFor="let q of questionsList.posts; let i = index">
+      <span>{{ i + 1 }}. {{ q.content }}</span> <button class="btn btn-default btn-sm" (click)="onClickDelete(q.idx)">DELETE</button> | 
+      <button class="btn btn-default btn-sm" (click)="onClickEdit(q.idx)">EDIT</button>      
+    </li>-->
+  </ul>
+
+<ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
+  <ngb-panel id="{{ q.idx }}" title="{{ i + 1}}: {{ q.content }}" *ngFor="let q of questionsList.posts; let i = index ">
+    <template ngbPanelContent>
+
+      <ul choices>
+        <li> {{ q.varchar_1 }} </li>
+        <li> {{ q.varchar_2 }} </li>
+        <li> {{ q.varchar_3 }} </li>
+        <li> {{ q.varchar_4 }} </li>
+      </ul>
+      <hr/>
+      <ul>
+        <li>
+          <h3>{{ q.int_1 }}</h3>
+        </li>
+      </ul>
+      <button class="btn btn-default btn-sm" (click)="onClickDelete(q.idx)">DELETE</button> | 
+      <button class="btn btn-default btn-sm" (click)="onClickEdit(q.idx)">EDIT</button>
+  
+    </template>
+  </ngb-panel>
+</ngb-accordion>

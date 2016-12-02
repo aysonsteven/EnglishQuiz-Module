@@ -4,8 +4,8 @@ import { RouterModule, Routes } from '@angular/router'
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './home/home.component';
-import { QuiztestComponent } from './quiztest/quiztest.component';
-import { QuizbuilderComponent } from './quizbuilder/questionform/quizbuilder-form.component';
+import { QuiztestComponent } from './quiz/quiztest/quiztest.component';
+import { QuizbuilderComponent } from './quiz/quizbuilder/questionform/quizbuilder-form.component';
 
 const link: Routes = [
     { path: '', redirectTo:'/home', pathMatch: 'full' },
