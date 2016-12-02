@@ -9,19 +9,45 @@ import { Router } from '@angular/router';
 })
 export class QuizbuilderComponent implements OnInit {
 
+  idx: string;
+
   formStatus = {};
   
   isValid:boolean;
   questionForm: POST_DATA = <POST_DATA> {};
 
   category:string;
-  constructor( private question: Quiz, private routes: Router ) { }
+  constructor( private question: Quiz, private routes: Router ) { 
+    this.idx = localStorage.getItem('question-idx');
+      this.getQustion();
+ 
+  }
 
   ngOnInit() {
   }
 
-  onClickCreate(){
+  getQustion(){
+    if( this.idx ){
+      this.question.get( this.idx, res =>{
+        console.log( "EDIT(): " + res );
+        this.questionForm = res.post;
+      }, e =>{
+        console.log( "EDIT(): " + e );
+      })
+    } 
+  }
 
+  onClickCreate(){
+    if ( this.idx ){
+      this.question.edit( this.questionForm, res =>{
+        console.log( "successfully updated" + res );
+        this.routes.navigate(['home']);
+      }, err =>{
+        console.log( "error updating" + err )
+      })
+      return
+    }
+    
     if( this.validateForm() == false) return;
     
     this.questionForm.post_id = 'job';
@@ -34,7 +60,6 @@ export class QuizbuilderComponent implements OnInit {
     }, error => {
       alert ( error );
     })
-    // console.info( 'check form(()):: ' + JSON.stringify(this.questionForm) )
   }
 
 

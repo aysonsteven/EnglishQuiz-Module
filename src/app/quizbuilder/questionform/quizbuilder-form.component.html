@@ -62,7 +62,12 @@
 
     <div class="form-group row">
       <div class="col-xs-9">
-        <button class="btn btn-primary" (click)="onClickCreate()">Create</button>
+
+        <button class="btn btn-primary" (click)="onClickCreate()">
+          <span *ngIf="!idx">Create</span>
+          <span *ngIf="idx">Edit</span>
+        </button>
+
         <button class="btn btn-secondary" (click)="onCLickReset()">Reset</button>
       </div>
     </div>

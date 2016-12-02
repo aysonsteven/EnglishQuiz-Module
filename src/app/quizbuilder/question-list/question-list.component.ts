@@ -21,6 +21,7 @@ export class QuestionListComponent implements OnInit {
 
   goToQuestionform(){
     this.route.navigate(['add']);
+    localStorage.setItem("question-idx", '');
   }
 
   onClickDelete( idxval ){
@@ -32,7 +33,8 @@ export class QuestionListComponent implements OnInit {
     })
   }
   onClickEdit( val ){
-    // this.route.navigate(['add'])
+    this.route.navigate(['add']);
+    localStorage.setItem( "question-idx", val )
     
   }
   getQuestions(){

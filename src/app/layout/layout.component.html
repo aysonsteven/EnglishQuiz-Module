@@ -1,5 +1,5 @@
 <div class="container">
-    <header><!-- header here --></header>
+    <header><!-- header here --> </header>
 <br/>
     <nav class="navbar navbar-dark bg-primary">
         <ul class="nav navbar-nav">
@@ -7,6 +7,7 @@
         <li *ngIf="!sessionSrvc.sessionData" class="nav-item" ><a class="nav-link" routerLink="login">Login</a></li>
         <li *ngIf="!sessionSrvc.sessionData" class="nav-item" ><a class="nav-link" routerLink="register">Register</a></li>
         <li *ngIf="sessionSrvc.sessionData" class="nav-item" ><a class="nav-link" routerLink="" (click)="onClickLogout()">logout</a></li>
+        <li *ngIf="sessionSrvc.sessionData" class="nav-item pull-xs-right" ><a class="nav-link" >{{ sessionSrvc.sessionData.id }}</a>
         </ul>
     </nav>
 <br>
