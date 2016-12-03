@@ -9,71 +9,70 @@ import { AuthsessionService } from '../services/auth-session.service';
   styleUrls: ['./authentication.component.scss']
 })
 export class AuthenticationComponent implements OnInit {
+
+  formStatus = {
+    uid:'',
+    pword: '',
+    error: '',
+    loader: ''
+  }
+
   blnk: string = " ";
-  error = {}
-  formStatuspword = {};
-  formStatusuid = {};
-  status : { loader?; error?; success?; } = {};
   loading:boolean = true;
   loginForm: MEMBER_LOGIN_DATA = <MEMBER_LOGIN_DATA> {};
   isValid;
   constructor(
     private user: User,
     private routes: Router,
-    private sessionSrvc: AuthsessionService
+    private session: AuthsessionService
   ) { }
 
   ngOnInit() {
-    this.isValid = true;
-    this.formStatuspword = {}
-    this.formStatusuid = {}
+    this.isValid = true;    
   }
+
 
   onClickLogin(){
     ///validations
     this.isValid = true;
-    this.formStatusuid = {};
-    this.formStatuspword = {};
+    this.resetStatus();
     this.validateForm();
     if( this.isValid == false ) return;
+    this.formStatus.loader = 'true';
     ///end of validation
 
-    this.status = { 'loader' : true };
-    console.log('onClickLogin()')
     this.user.login( this.loginForm , res=> {
-      console.log('login success: ', res );
-      this.status = { 'success': 'login success' }
-      this.routes.navigate(['home'])
+      this.session.sessionData = res;
+      this.routes.navigate([''])
     }, error=>{
-      this.status.loader = false; 
-      console.log( "login error "+ error );
-      this.error = { error: error}
+      this.formStatus.loader = ''
+      this.formStatus.error = 'Server : ' + error;
     },()=>{
-      this.status.loader = false; 
+      this.formStatus.loader = ''
     })
   }
 
   onClickReset(){
     this.loginForm =  <MEMBER_LOGIN_DATA> {};
-    this.formStatuspword = {};
-    this.formStatusuid = {};
+    this.resetStatus();
+  }
+  resetStatus(){
+    this.formStatus = { uid: '', pword: '', error: '', loader: '' };
   }
 
   validateForm(){
-    if( this.loginForm.id == null || this.loginForm.id == '' ){
-      this.formStatusuid = { userid : 'insert UserID' }
+    if( this.loginForm.id == null || this.loginForm.password == '' ){
+      this.formStatus.uid = 'insert UserID';
       this.isValid = false;
-    }
-    else if( this.loginForm.id.length <=3 ){
-      this.formStatusuid = { userid: 'UserID must consist atleast 3 characters' };
+    }else if( this.loginForm.id.length <= 2 ){
+      this.formStatus.uid = 'UserID must consist atleast 3 characters';
       this.isValid = false;
     }
     if( this.loginForm.password == null || this.loginForm.password == '' ){
-      this.formStatuspword = { pword : 'insert password'}
+      this.formStatus.pword = 'insert password';
       this.isValid = false;
-    }
-    else if( this.loginForm.password.length <=5 ){
-      this.formStatuspword = { pword : 'password must be 6 or more'}
+    }else if( this.loginForm.password.length <= 5 ){
+      this.formStatus.pword = 'password must be 6 or more';
       this.isValid = false;
     }
   }

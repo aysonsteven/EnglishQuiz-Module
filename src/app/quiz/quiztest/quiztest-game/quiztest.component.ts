@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Quiz } from '../../quiz-module/services/quiz.service';
-import { POSTS, POST_DATA, PAGE_DATA } from '../../quiz-module/interfaces/quiz-module.interface';
+import { Quiz } from '../../../quiz-module/services/quiz.service';
+import { POSTS, POST_DATA, PAGE_DATA } from '../../../quiz-module/interfaces/quiz-module.interface';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-quiztest',
   templateUrl: './quiztest.component.html',
@@ -9,7 +10,8 @@ import { POSTS, POST_DATA, PAGE_DATA } from '../../quiz-module/interfaces/quiz-m
 export class QuiztestComponent implements OnInit {
   keys;
   questionsList =<POSTS>{};
-  constructor( private questions: Quiz ) { 
+  playerName: string;
+  constructor( private questions: Quiz, private router: Router ) { 
     this.getQuestions();
 
     // console.log( 'check this : ' + this.questionsList )
@@ -18,6 +20,9 @@ export class QuiztestComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.playerName = localStorage.getItem('playername');
+    if( this.playerName ) localStorage.removeItem('playername');
+    else this.router.navigate(['']);
   }
 
   getQuestions(){

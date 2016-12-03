@@ -4,7 +4,7 @@
   <form>
      <div class="form-group">
    
-        <div errorwrap *ngIf="error.error">{{ error.error }}</div>
+        <div errorwrap *ngIf="formStatus.error">{{ formStatus.error }}</div>
 
      
     </div>
@@ -16,9 +16,7 @@
     </div>
 
     <div class="form-group">
-   
-        <div errorwrap *ngIf="formStatusuid.userid">{{ formStatusuid.userid }}</div>
-     
+        <div errorwrap *ngIf="formStatus.uid">{{ formStatus.uid }}</div>
     </div>
 
      <div class="form-group row">
@@ -29,16 +27,13 @@
     </div>
 
     <div class="form-group">
-   
-        <div errorwrap *ngIf="formStatuspword.pword">{{ formStatuspword.pword }}</div>
-        <div errorwrap *ngIf="!formStatuspword.pword"></div>
-     
+        <div errorwrap *ngIf="formStatus.pword">{{ formStatus.pword }}</div>
     </div>
 
      <div class="form-group row">
       <div class="col-xs-9">
-        <button class="btn btn-primary" *ngIf=" ! status.loader " (click)="onClickLogin()">Login</button>
-        <button class="btn btn" *ngIf=" status.loader " disabled (click)="onClickLogin()">Login</button>
+        <button class="btn btn-primary" *ngIf=" ! formStatus.loader " (click)="onClickLogin()">Login</button>
+        <button class="btn btn" *ngIf=" formStatus.loader " disabled (click)="onClickLogin()">Login</button>
         <button class="btn btn-secondary" (click)="onClickReset()">Reset</button>
       </div>
     </div>

@@ -13,17 +13,13 @@
     <template ngbPanelContent>
 
       <ul choices>
-        <li> {{ q.varchar_1 }} </li>
-        <li> {{ q.varchar_2 }} </li>
-        <li> {{ q.varchar_3 }} </li>
-        <li> {{ q.varchar_4 }} </li>
+        <li>1: {{ q.varchar_1 }} </li>
+        <li>2: {{ q.varchar_2 }} </li>
+        <li>3: {{ q.varchar_3 }} </li>
+        <li>4: {{ q.varchar_4 }} </li>
       </ul>
       <hr/>
-      <ul>
-        <li>
-          <h3>{{ q.int_1 }}</h3>
-        </li>
-      </ul>
+      <h4>{{ q.varchar_5 }}</h4>
       <button class="btn btn-default btn-sm" (click)="onClickDelete(q.idx)">DELETE</button> | 
       <button class="btn btn-default btn-sm" (click)="onClickEdit(q.idx)">EDIT</button>
   

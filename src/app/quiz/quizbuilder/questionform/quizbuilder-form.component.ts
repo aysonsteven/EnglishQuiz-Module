@@ -86,7 +86,7 @@ export class QuizbuilderComponent implements OnInit {
       this.formStatus = { question : 'no question' };
       return false;
     }
-   else if( this.questionForm.int_1 == null || this.questionForm.int_1 == '' ){
+   else if( this.questionForm.varchar_5 == null || this.questionForm.varchar_5 == '' ){
       this.formStatus = { answer: 'no answer' };
       return false;
     }
