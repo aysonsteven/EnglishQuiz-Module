@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Quiz, POST_DATA} from '../../../quiz-module/services/quiz.service'
 import { Router } from '@angular/router';
-import {Subject} from 'rxjs/Subject'
+
 
 @Component({
   selector: 'app-quizbuilderform',
@@ -9,10 +9,7 @@ import {Subject} from 'rxjs/Subject'
   styleUrls: ['./quizbuilder-form.component.scss']
 })
 export class QuizbuilderComponent implements OnInit {
-  private _success = new Subject<string>();
-  staticAlertClosed = false;
-  successMessage: string;
-  testAddInput = [];
+
   idx: string;
   formStatus = {};
   enableBtn:boolean = true;
@@ -26,16 +23,11 @@ export class QuizbuilderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    setTimeout(() => this.staticAlertClosed = true, 20000);
 
-    this._success.subscribe((message) => this.successMessage = message);
-    setTimeout( ()=>{ 
-      this.successMessage = null }, 
-      10000);
   }
 
   public changeSuccessMessage() {
-    this._success.next(`${new Date()} - Message successfully changed.`);
+
   }
 
   onClickAddChoices(){}
@@ -46,7 +38,7 @@ export class QuizbuilderComponent implements OnInit {
         console.log( "EDIT(): " + res );
         this.questionForm = res.post;
       }, e =>{
-            this._success.next( e );
+
       })
     } 
   }

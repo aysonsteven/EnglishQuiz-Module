@@ -10,8 +10,10 @@
         <li *ngIf="sessionSrvc.sessionData" class="nav-item pull-xs-right" ><a class="nav-link" >{{ sessionSrvc.sessionData.id }}</a>
         </ul>
     </nav>
+   
 <br>
     <main>
+         <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
         <router-outlet></router-outlet>
     </main>
     <footer></footer>
