@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User, MEMBER_DATA, MEMBER_LOGIN_DATA } from '../quiz-module/services/user.service';
 import { Router } from '@angular/router';
 import { AuthsessionService } from '../services/auth-session.service';
+import 'rxjs/add/operator/timeout';
 
 @Component({
   selector: 'app-authentication',
@@ -51,6 +52,10 @@ export class AuthenticationComponent implements OnInit {
     },()=>{
       this.formStatus.loader = '';
     })
+    setTimeout( test => {
+      this.formStatus.loader = '';
+      this.formStatus.error = 'No Internet Connection or possible that the server is down.'
+    }, 9000);
   }
 
   onClickReset(){

@@ -2,13 +2,27 @@
     <header><!-- header here --> </header>
 <br/>
     <nav class="navbar navbar-dark bg-primary">
-        <ul class="nav navbar-nav">
-        <li  class="nav-item" ><a class="nav-link" routerLink="/home">Home</a></li>
-        <li *ngIf="!sessionSrvc.sessionData" class="nav-item" ><a class="nav-link" routerLink="login">Login</a></li>
-        <li *ngIf="!sessionSrvc.sessionData" class="nav-item" ><a class="nav-link" routerLink="register">Register</a></li>
-        <li *ngIf="sessionSrvc.sessionData" class="nav-item" ><a class="nav-link" routerLink="" (click)="onClickLogout()">logout</a></li>
-        <li *ngIf="sessionSrvc.sessionData" class="nav-item pull-xs-right" ><a class="nav-link" >{{ sessionSrvc.sessionData.id }}</a>
-        </ul>
+
+        <div class="container">
+            <button class="navbar-toggler hidden-lg-up"
+                    type="button" 
+                    data-toggle="collapse" 
+                    data-target="#exCollapsingNavbar" 
+                    aria-controls="exCollapsingNavbar" 
+                    aria-expanded="false" 
+                    aria-label="Toggle navigation">
+            </button> 
+        </div>
+        
+        <div class="container collapse navbar-toggleable-md"  id="exCollapsingNavbar">
+            <div class="nav navbar-nav">
+                <a class="nav-link" routerLink="/home">Home</a>
+                <a *ngIf="!sessionSrvc.sessionData"  class="nav-link nav-item pull-xs-right" routerLink="login">Login</a>
+                <a *ngIf="!sessionSrvc.sessionData"  class="nav-link nav-item pull-xs-right" routerLink="register">Register</a>
+                <a *ngIf="sessionSrvc.sessionData"   class="nav-link" routerLink="" (click)="onClickLogout()">logout</a>
+                <a *ngIf="sessionSrvc.sessionData"  class="nav-link" >{{ sessionSrvc.sessionData.id }}</a>
+            </div>
+        </div>
     </nav>
    
 <br>
