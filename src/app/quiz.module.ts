@@ -48,4 +48,4 @@ import { QuiztestFinalComponent } from './quiz/quiztest/quiztest-final/quiztest-
   providers: [ AuthsessionService, User, Quiz ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class QuizModule { }
