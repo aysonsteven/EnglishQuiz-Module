@@ -42,13 +42,14 @@ export class AuthenticationComponent implements OnInit {
     ///end of validation
 
     this.user.login( this.loginForm , res=> {
+      this.formStatus.loader = '';
       this.session.sessionData = res;
-      this.routes.navigate([''])
+      this.routes.navigate(['']);
     }, error=>{
-      this.formStatus.loader = ''
+      this.formStatus.loader = '';
       this.formStatus.error = 'Server : ' + error;
     },()=>{
-      this.formStatus.loader = ''
+      this.formStatus.loader = '';
     })
   }
 
