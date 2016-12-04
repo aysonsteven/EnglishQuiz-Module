@@ -7,11 +7,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./quiztest-home.component.scss']
 })
 export class QuiztestHomeComponent implements OnInit {
-
   inputErrorCheck:string;
-
   constructor( private router: Router ) { }
-
   ngOnInit() {
   }
 

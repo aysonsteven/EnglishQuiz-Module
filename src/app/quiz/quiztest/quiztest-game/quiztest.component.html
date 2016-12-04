@@ -1,19 +1,8 @@
 <section *ngIf="!currentQuestion">please wait..</section>
 
-<!--<section *ngIf="currentQuestion">-->
   <h4>Player Name: {{ playerName }}</h4>
-
   <div queztionContainer>{{ currentQuestion.content }}</div>
   <br/>
-  <!--{{ currentQuestion.varchar_1 }}
-  <br/>
-  {{ currentQuestion.varchar_2 }}
-  <br/>
-  {{ currentQuestion.varchar_3 }}
-  <br/>
-  {{ currentQuestion.varchar_4 }}-->
-
-<!--</section>-->
 
 <section quizForm>
 <div class="form-check">
@@ -43,5 +32,4 @@
   </label>
 </div>
 </section>
-
 <button btnSubmit class="btn btn-secondary" (click)="onClickProceed()">Submit</button>

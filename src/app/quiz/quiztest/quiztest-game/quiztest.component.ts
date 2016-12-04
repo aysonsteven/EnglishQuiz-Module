@@ -14,15 +14,11 @@ export class QuiztestComponent implements OnInit {
   ctr: number = 0;
   ctrRandom:number;
   keys;
-  questionsList =<POSTS>{};
+  questionsList;
   playerName: string;
   constructor( private questions: Quiz, private router: Router ) { 
     this.ctrRandom = null;
     this.getQuestions();
-
-    // console.log( 'check this : ' + this.questionsList )
-
-    // console.log('check val() ' + this.questionsList )
   }
 
   ngOnInit() {
@@ -33,8 +29,8 @@ export class QuiztestComponent implements OnInit {
   }
 
   showQuiz(){
-      this.ctrRandom = Math.floor( Math.random() * ( this.test.length - 1 + 1 )) + 0;
-      this.currentQuestion = this.test[this.ctrRandom];
+      this.ctrRandom = Math.floor( Math.random() * ( this.questionsList.length - 1 + 1 )) + 0;
+      this.currentQuestion = this.questionsList[this.ctrRandom];
       if( this.ctrRandom ) this.loading = false;
   }
 
@@ -49,7 +45,7 @@ export class QuiztestComponent implements OnInit {
     }
     this.questions.page( body, res=>{
       // this.questionsList = res;
-      this.test = res.posts;
+      this.questionsList = res.posts;
       this.showQuiz();
     }, e=>{
     console.error (e)
@@ -57,9 +53,10 @@ export class QuiztestComponent implements OnInit {
   }
 
   randomizedQuestions(){
-    this.ctrRandom = Math.floor( Math.random() * ( this.test.length - 1 + 1 )) + 0;
-    this.currentQuestion = this.test[this.ctrRandom];
-    this.test.splice( this.ctrRandom, 1 );
+    // this.ctrRandom = Math.floor( Math.random() * ( this.test.length - 1 + 1 )) + 0;
+    // this.currentQuestion = this.test[this.ctrRandom];
+    this.showQuiz();
+    this.questionsList.splice( this.ctrRandom, 1 );
   }
 
 }

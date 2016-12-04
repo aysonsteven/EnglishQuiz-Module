@@ -1,9 +1,4 @@
-
-
-
 <div class="container-fluid">
-
-
   <form>
     <div class="form-group row">
       <label for="id" class="col-xs-3 col-form-label">Question</label>
@@ -12,13 +7,9 @@
       </div>
     </div>
 
-
     <div class="form-group">
-   
         <div errorwrap *ngIf="formStatus.question">{{ formStatus.question }}</div>
-     
     </div>
-
 
     <div class="form-group row">
       <label for="choice1" class="col-xs-3 col-form-label">Choice2</label>
@@ -26,7 +17,6 @@
         <input class="form-control" type="text" id="choice1" [(ngModel)]="questionForm.varchar_1" name="choice1">
       </div>
     </div>
-
 
     <div class="form-group row">
       <label for="choice2" class="col-xs-3 col-form-label">Choice2</label>
@@ -49,7 +39,6 @@
       </div>
     </div>
 
-
     <div class="form-group row">
       <label for="answer" class="col-xs-3 col-form-label">Answer</label>
       <div class="col-xs-9">
@@ -70,7 +59,6 @@
 
     <div class="form-group row">
       <div class="col-xs-12">
-
         <button class="btn btn-primary" (click)="onClickCreate()">
           <span *ngIf="!idx">Create</span>
           <span *ngIf="idx">Edit</span>
@@ -79,6 +67,5 @@
         <button class="btn btn-secondary" (click)="onCLickReset()">Reset</button>
       </div>
     </div>
-
   </form>
 </div>
