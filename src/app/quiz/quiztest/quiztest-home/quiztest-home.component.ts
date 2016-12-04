@@ -15,9 +15,9 @@ export class QuiztestHomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClickProceed(val){
-    console.log( val )
+  onClickProceed(val){    
     if( this.validateForm( val ) == false ) return;
+    console.log( val )
     this.router.navigate(['game']);
     localStorage.setItem('playername', val)
   }
