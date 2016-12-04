@@ -57,6 +57,7 @@ export class QuizbuilderComponent implements OnInit {
     if( this.validateForm() == false) return;
     
     this.questionForm.post_id = 'job';
+    this.questionForm.category = 'quiz';
     this.questionForm.subject = 'questions';
     
     this.question.add( this.questionForm, data=>{

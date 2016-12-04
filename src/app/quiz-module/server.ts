@@ -1,5 +1,5 @@
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { MEMBER_LOGIN_DATA } from './interfaces/quiz-module.interface';
+import { MEMBER_LOGIN_DATA, SEARCH_QUERY_DATA } from './interfaces/quiz-module.interface';
 import 'rxjs/add/operator/timeout';
 export const PHILGO_MEMBER_LOGIN = 'philgo-login';
 
@@ -185,6 +185,14 @@ export class API {
             .replace(/\)/g, '%29')
             .replace(/\*/g, '%2A')
             .replace(/%20/g, '+')
+    }
+
+    search( data: SEARCH_QUERY_DATA, successCallback: ( re: any ) => void, errorCallback: ( error: string ) => void, completeCallback?: () => void ) {
+        let url = this.getUrl( 'search&' + this.http_build_query( data ) );
+        this.get( url,
+            successCallback,
+            errorCallback,
+            completeCallback );
     }
 
 }

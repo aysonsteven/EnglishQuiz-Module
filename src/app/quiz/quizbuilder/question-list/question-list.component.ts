@@ -41,7 +41,7 @@ export class QuestionListComponent implements OnInit {
     let body = <PAGE_DATA> {
       post_id: 'job',
       page_no: 1,
-      limit: void 0
+      limit: void 0,
     }
     this.questions.page( body, res=>{
       // this.questionsList = res
