@@ -38,7 +38,7 @@ export class QuizbuilderComponent implements OnInit {
         console.log( "EDIT(): " + res );
         this.questionForm = res.post;
       }, e =>{
-
+        alert( e )
       })
     } 
   }

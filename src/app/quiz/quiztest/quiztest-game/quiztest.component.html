@@ -1,35 +1,44 @@
+<div class="alert alert-danger" role="alert" *ngIf="errorCheck">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <strong>Error</strong> {{ errorCheck }}
+</div>
 <section *ngIf="!currentQuestion">please wait..</section>
-
-  <h4>Player Name: {{ playerName }}</h4>
+  <h4 >Player Name: {{ playerName }}</h4>
+  <h4 >Score: {{ score }}</h4>
+  {{ ctr }}  {{ questionCount.length }}
   <div queztionContainer>{{ currentQuestion.content }}</div>
   <br/>
-
 <section quizForm>
-<div class="form-check">
-  <label class="form-check-label">
-    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-    {{ currentQuestion.varchar_1 }}
-  </label>
-</div>
+  <form id="check">
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="radio" id="exampleRadios1" value="{{ currentQuestion.varchar_1 }}" [(ngModel)]="radio">
+        {{ currentQuestion.varchar_1 }}
+      </label>
+    </div>
 
-<div class="form-check">
-  <label class="form-check-label">
-    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-    {{ currentQuestion.varchar_2 }}
-  </label>
-</div>
-<div class="form-check">
-  <label class="form-check-label">
-    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-    {{ currentQuestion.varchar_3 }}
-  </label>
-</div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="radio" id="exampleRadios1" value="option1" value="{{ currentQuestion.varchar_2 }}" [(ngModel)]="radio">
+        {{ currentQuestion.varchar_2 }}
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="radio" id="exampleRadios1" value="option1" value="{{ currentQuestion.varchar_3 }}" [(ngModel)]="radio">
+        {{ currentQuestion.varchar_3 }}
+      </label>
+    </div>
 
-<div class="form-check">
-  <label class="form-check-label">
-    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-    {{ currentQuestion.varchar_4 }}
-  </label>
-</div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="radio" id="exampleRadios1" value="option1" value="{{ currentQuestion.varchar_4 }}" [(ngModel)]="radio">
+        {{ currentQuestion.varchar_4 }}
+      </label>
+    </div>
+    <button type="button" btnSubmit class="btn btn-secondary" (click)="onClickProceed(radio)">Submit</button>
+  </form>
 </section>
-<button btnSubmit class="btn btn-secondary" (click)="onClickProceed()">Submit</button>
+<div error *ngIf="validate">{{ validate }}</div>

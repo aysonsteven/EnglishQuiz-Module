@@ -1,4 +1,4 @@
-
+<div errorWrap *ngIf="errorCheck">{{ errorCheck }}</div>
   <button class="btn btn-secondary btn-sm" (click)="goToQuestionform()">Add Questions</button>
   <br/>
   <ul>
@@ -8,12 +8,12 @@
   <ngb-panel id="{{ q.idx }}" title="{{ i + 1}}: {{ q.content }}" *ngFor="let q of questionsList.posts; let i = index ">
     <template ngbPanelContent>
 
-      <ul choices>
-        <li>1: {{ q.varchar_1 }} </li>
-        <li>2: {{ q.varchar_2 }} </li>
-        <li>3: {{ q.varchar_3 }} </li>
-        <li>4: {{ q.varchar_4 }} </li>
-      </ul>
+      <ol choices>
+        <li>{{ q.varchar_1 }} </li>
+        <li>{{ q.varchar_2 }} </li>
+        <li>{{ q.varchar_3 }} </li>
+        <li>{{ q.varchar_4 }} </li>
+      </ol>
       <hr/>
       <h4>{{ q.varchar_5 }}</h4>
       <button class="btn btn-default btn-sm" (click)="onClickDelete(q.idx)">DELETE</button> | 
@@ -21,4 +21,7 @@
   
     </template>
   </ngb-panel>
+
+
+  
 </ngb-accordion>

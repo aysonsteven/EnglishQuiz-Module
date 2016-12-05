@@ -3,6 +3,7 @@ import { AuthsessionService } from '../services/auth-session.service';
 import { User, MEMBER_DATA } from '../quiz-module/services/user.service';
 import { Router } from '@angular/router';
 import {Subject} from 'rxjs/Subject';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-layout',
@@ -18,7 +19,9 @@ export class LayoutComponent implements OnInit {
     private sessionSrvc: AuthsessionService, 
     private user: User ,
     private route: Router
-    ) { }
+    ) { 
+
+     }
 
   ngOnInit(): void {
     setTimeout(() => this.staticAlertClosed = true, 20000);

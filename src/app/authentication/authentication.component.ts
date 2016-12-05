@@ -32,7 +32,6 @@ export class AuthenticationComponent implements OnInit {
     this.isValid = true;    
   }
 
-
   onClickLogin(){
     ///validations
     this.isValid = true;
@@ -51,11 +50,8 @@ export class AuthenticationComponent implements OnInit {
       this.formStatus.error = 'Server : ' + error;
     },()=>{
       this.formStatus.loader = '';
+      console.log('()')
     })
-    setTimeout( test => {
-      this.formStatus.loader = '';
-      this.formStatus.error = 'No Internet Connection or possible that the server is down.'
-    }, 9000);
   }
 
   onClickReset(){
