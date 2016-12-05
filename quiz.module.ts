@@ -46,6 +46,17 @@ import { QuiztestFinalComponent } from './quiz/quiztest/quiztest-final/quiztest-
     NgbModule.forRoot()
   ],
   providers: [ AuthsessionService, User, Quiz ],
-  bootstrap: [AppComponent]
+  exports: [
+    LayoutComponent,
+    AuthenticationComponent,
+    HomeComponent,
+    RegistrationComponent,
+    QuiztestComponent,
+    QuizbuilderComponent,
+    QuestionListComponent,
+    QuizChoicesComponent,
+    QuiztestHomeComponent,
+    QuiztestFinalComponent
+  ]
 })
 export class QuizModule { }
