@@ -38,6 +38,7 @@ export class User extends API{
 
     register( userData: MEMBER_DATA, success: ( login: MEMBER_LOGIN_DATA) => void, error: ( error: string ) => void, complete?: ()=> void){
         userData['action'] = 'member_register_submit';
+        userData['login'] = 'pass';
         this.write( userData, res=>{
             this.setLoginData( res );
             success( res );

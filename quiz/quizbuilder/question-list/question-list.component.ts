@@ -35,11 +35,12 @@ export class QuestionListComponent implements OnInit {
     })
   }
 
-  searchbtn(){
+  search(){
     console.log("search()");
     let data = <SEARCH_QUERY_DATA> {};
-    data.fields = "name, email";
-    data.from = "sf_member";
+    data.fields = "content, varchar_1, varchar_2, varchar_3, varchar_4, varchar_5, category";
+    data.from = "sf_post_data";
+    data.where = "post_id='job' AND category='quiz'"
     this.questions.search( data, re => {
       console.log("search result: ", re);
     }, error => alert("error on search: " + error ) );
