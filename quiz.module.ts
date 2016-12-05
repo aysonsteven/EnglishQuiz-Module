@@ -10,7 +10,7 @@ import { AuthsessionService } from './services/auth-session.service';
 import { User } from './quiz-module/services/user.service';
 import { Quiz } from './quiz-module/services/quiz.service';
 
-import { AppComponent } from './app.component';
+
 import { LayoutComponent } from './layout/layout.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { HomeComponent } from './home/home.component';
@@ -26,7 +26,6 @@ import { QuiztestFinalComponent } from './quiz/quiztest/quiztest-final/quiztest-
 
 @NgModule({
   declarations: [
-    AppComponent,
     LayoutComponent,
     AuthenticationComponent,
     HomeComponent,
