@@ -18,7 +18,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { QuiztestComponent } from './quiz/quiztest/quiztest-game/quiztest.component';
 import { QuizbuilderComponent } from './quiz/quizbuilder/questionform/quizbuilder-form.component';
 import { QuestionListComponent } from './quiz/quizbuilder/question-list/question-list.component';
-import { QuizChoicesComponent } from './quiz/quiz-choices/quiz-choices.component';
+import { QuizLogComponent } from './quiz/quiz-log/quiz-log.component';
 import { QuiztestHomeComponent } from './quiz/quiztest/quiztest-home/quiztest-home.component';
 import { QuiztestFinalComponent } from './quiz/quiztest/quiztest-final/quiztest-final.component';
 
