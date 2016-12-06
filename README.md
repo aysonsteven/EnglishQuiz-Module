@@ -17,7 +17,11 @@ English Quiz Module
     import ngBootstrap to the main module : mport {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     imports: [NgbModule.forRoot(), ...]
 
-After installation you can now use the English Quiz Module
+##After installation you can now use the English Quiz Module
+###Just import the quiz module
+####import { QuizModule } from './quizmodule/quiz.module';
+####imports: [ QuizModule ]
+###After importing quiz module you can now use all the components from quizmodule
 
 #for admin routing:
     id: aysonsteven
