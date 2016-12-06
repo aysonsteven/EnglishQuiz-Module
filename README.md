@@ -19,7 +19,7 @@ English Quiz Module
 
 After installation you can now use the English Quiz Module
 
-for admin routing:
+#for admin routing:
     id: aysonsteven
     pw: mypassword
 
