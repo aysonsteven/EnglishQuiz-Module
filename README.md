@@ -10,7 +10,7 @@ English Quiz Module
     <link rel="stylesheet" href="./assets/bootstrap.min.css">
     <script src="./assets/jquery-3.1.1.min.js"></script> 
     <script src="./assets/bootstrap.min.js"></script>
-    
+
     then copy the css and js module's assets to your assets folder
 
     on app.module import ngb Module it should be like this:
@@ -18,6 +18,11 @@ English Quiz Module
     imports: [NgbModule.forRoot(), ...]
 
 #After installation you can now use the English Quiz Module
+
+for admin routing:
+
+id: aysonsteven
+pw: mypassword
 
 https://quizbuilder-7c420.firebaseapp.com
 
