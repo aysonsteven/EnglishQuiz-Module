@@ -53,7 +53,8 @@ import { QuiztestFinalComponent } from './quiz/quiztest/quiztest-final/quiztest-
     QuizbuilderComponent,
     QuestionListComponent,
     QuiztestHomeComponent,
-    QuiztestFinalComponent
+    QuiztestFinalComponent,
+    QuizLogComponent
   ]
 })
 export class QuizModule { }
