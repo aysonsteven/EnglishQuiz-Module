@@ -7,7 +7,7 @@
 
 
 <ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
-  <ngb-panel id="{{ q.idx }}" title="{{ i + 1}}: {{ q.content }}" *ngFor="let q of questionsList.posts; let i = index ">
+  <ngb-panel id="{{ q.idx }}" title="{{ i + 1}}: {{ q.content }}" *ngFor="let q of questionsList.search; let i = index ">
     <template ngbPanelContent>
 
       <ol choices>

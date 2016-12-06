@@ -12,10 +12,14 @@ export class QuiztestHomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClickProceed(val){    
+  onClickProceed(){    
 
     this.router.navigate(['game']);
     
+  }
+
+  onClickShowScore(){
+
   }
 
 }

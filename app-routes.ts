@@ -15,8 +15,9 @@ const link: Routes = [
     { path: 'register', component: RegistrationComponent },
     { path: 'login', component: AuthenticationComponent },
     { path: 'add', component: QuizbuilderComponent },
+    { path: 'edit/:idx', component: QuizbuilderComponent },
     { path : 'game' , component: QuiztestComponent },
-    { path: 'final', component: QuiztestFinalComponent }
+    { path: 'final/:score/:total', component: QuiztestFinalComponent }
 ]
 
 @NgModule({

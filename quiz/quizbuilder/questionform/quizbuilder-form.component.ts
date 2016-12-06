@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Quiz, POST_DATA} from '../../../quiz-module/services/quiz.service'
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
@@ -10,15 +10,18 @@ import { Router } from '@angular/router';
 })
 export class QuizbuilderComponent implements OnInit {
 
-  idx: string;
+  idx;
   formStatus = {};
   enableBtn:boolean = true;
   isValid:boolean;
   questionForm: POST_DATA = <POST_DATA> {};
 
   category:string;
-  constructor( private question: Quiz, private routes: Router ) { 
-    this.idx = localStorage.getItem('question-idx');
+  constructor( private question: Quiz, private routes: Router, private route: ActivatedRoute ) { 
+    this.route.params.forEach( ( params: Params ) =>{
+      this.idx = +params['idx'];
+    })
+    // this.idx = localStorage.getItem('question-idx');
       this.getQustion();
   }
 

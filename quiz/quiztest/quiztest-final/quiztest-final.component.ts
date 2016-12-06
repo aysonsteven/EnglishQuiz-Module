@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Quiz, POST_DATA} from '../../../quiz-module/services/quiz.service'
+import { AuthsessionService } from '../../../services/auth-session.service';
 
 
 @Component({
@@ -11,27 +12,26 @@ import { Quiz, POST_DATA} from '../../../quiz-module/services/quiz.service'
 export class QuiztestFinalComponent implements OnInit {
   playerstats = <POST_DATA>{};
   playerInfo={
-    score:'',
-    name: '',
+    score: null,
+    name: this.authSrvc.sessionData.id ,
     state: '',
-    total: '',
+    total: null,
   }
-  constructor( private router: Router, private question: Quiz ) { 
+  test;
+  constructor( private router: Router, private question: Quiz, private route: ActivatedRoute, private authSrvc: AuthsessionService ) { 
 
     
   }
 
   ngOnInit() {
-    this.playerInfo.name = localStorage.getItem( 'name' ); 
-    this.playerInfo.score = localStorage.getItem( 'score' );
-    this.playerInfo.state = localStorage.getItem( 'state' );
-    this.playerInfo.total = localStorage.getItem( 'total' );    
+    this.route.params.forEach( ( params: Params ) =>{
+      this.playerInfo.score = +params['score'];
+      this.playerInfo.total = +params['total'];
+    }) 
+
     if( this.playerInfo.name ){
-      localStorage.removeItem( 'name' );
-      localStorage.removeItem('score' );
-      localStorage.removeItem('state' );
-      localStorage.removeItem('total' );
-      // this.postStat();
+
+      this.postStat();
     }else this.router.navigate( [ 'game' ] )
   }
 
@@ -46,7 +46,7 @@ export class QuiztestFinalComponent implements OnInit {
   postStat(){
     if( ! this.playerInfo.name ) return ;
     this.playerstats.post_id = 'job';
-    this.playerstats.session_id = 
+    this.playerstats.content = this.authSrvc.sessionData.id + "'s stat"
     this.playerstats.subject = 'highscores';
     this.playerstats.category = 'playerstats';
     this.question.add( this.playerstats, data =>{

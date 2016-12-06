@@ -23,7 +23,6 @@ export class QuestionListComponent implements OnInit {
 
   goToQuestionform(){
     this.route.navigate(['add']);
-    localStorage.removeItem('question-idx')
   }
 
   onClickDelete( idxval ){
@@ -47,22 +46,19 @@ export class QuestionListComponent implements OnInit {
   }
 
   onClickEdit( val ){
-    this.route.navigate(['add']);
-    localStorage.setItem( "question-idx", val )
-    
+    this.route.navigate([ 'edit' , val ]);
   }
   getQuestions(){
-    let body = <PAGE_DATA> {
-      post_id: 'job',
-      page_no: 1,
-      limit: void 0,
-    }
-    this.questions.page( body, res=>{
-      // this.questionsList = res
-      this.questionsList = res;
-      
-    }, e=>{
-    this.errorCheck = 'No Internet Connection or possible that the server is down.';
-    })
+
+    console.log( "LIST()" );
+    let data = <SEARCH_QUERY_DATA> {};
+    data.fields = "idx, content, varchar_1, varchar_2, varchar_3, varchar_4, varchar_5, category";
+    data.from = "sf_post_data";
+    data.where = "post_id='job' AND category='quiz'";
+    data.orderby = 'idx desc'
+    this.questions.search( data, re => {
+      this.questionsList = re;
+    }, error => alert("error on search: " + error ) );
+    
   }
 }
