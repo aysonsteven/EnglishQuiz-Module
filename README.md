@@ -10,6 +10,7 @@ English Quiz Module
     <link rel="stylesheet" href="./assets/bootstrap.min.css">
     <script src="./assets/jquery-3.1.1.min.js"></script> 
     <script src="./assets/bootstrap.min.js"></script>
+    
     then copy the css and js module's assets to your assets folder
 
     on app.module import ngb Module it should be like this:
