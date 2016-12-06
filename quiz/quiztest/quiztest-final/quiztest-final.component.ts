@@ -36,7 +36,6 @@ export class QuiztestFinalComponent implements OnInit {
   }
 
   onClickPlayAgain(){
-    localStorage.setItem( 'playername', this.playerInfo.name );
     this.router.navigate( [ 'game' ] );
   }
   onClickChangeName(){

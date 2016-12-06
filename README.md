@@ -20,11 +20,10 @@ English Quiz Module
 #After installation you can now use the English Quiz Module
 
 for admin routing:
-
-id: aysonsteven
-pw: mypassword
+    id: aysonsteven
+    pw: mypassword
 
 https://quizbuilder-7c420.firebaseapp.com
 
 backup and testing.
-englishquizsample.esy.es
+    englishquizsample.esy.es
