@@ -33,7 +33,6 @@ import { QuiztestFinalComponent } from './quiz/quiztest/quiztest-final/quiztest-
     QuiztestComponent,
     QuizbuilderComponent,
     QuestionListComponent,
-    QuizChoicesComponent,
     QuiztestHomeComponent,
     QuiztestFinalComponent
   ],
@@ -53,7 +52,6 @@ import { QuiztestFinalComponent } from './quiz/quiztest/quiztest-final/quiztest-
     QuiztestComponent,
     QuizbuilderComponent,
     QuestionListComponent,
-    QuizChoicesComponent,
     QuiztestHomeComponent,
     QuiztestFinalComponent
   ]
