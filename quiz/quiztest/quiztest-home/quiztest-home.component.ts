@@ -19,7 +19,7 @@ export class QuiztestHomeComponent implements OnInit {
   }
 
   onClickShowScore(){
-
+    this.router.navigate(['logs']);
   }
 
 }

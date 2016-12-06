@@ -22,8 +22,10 @@ export class QuiztestComponent implements OnInit {
   questionsList;
   playerName: string;
   constructor( private questions: Quiz, private router: Router, private authSrvc: AuthsessionService ) { 
+    if(! this.authSrvc.sessionData ) this.router.navigate(['']);
     this.ctrRandom = null;
     this.getQuestions();
+
   }
 
   ngOnInit() {
@@ -32,9 +34,6 @@ export class QuiztestComponent implements OnInit {
   }
 
   getQuestions(){
-
-
-
     console.log( "LIST()" );
     let data = <SEARCH_QUERY_DATA> {};
     data.fields = "idx, content, varchar_1, varchar_2, varchar_3, varchar_4, varchar_5, category";
@@ -47,22 +46,6 @@ export class QuiztestComponent implements OnInit {
       console.log('this is re' , this.questionsList)
       this.showQuiz();
     }, error => alert("error on search: " + error ) );
-
-
-    // let body = <PAGE_DATA> {
-    //   post_id: 'job',
-    //   page_no: 1
-    // }
-    // this.questions.page( body, res=>{
-    //   this.questionsList = res.posts;
-    //   this.questionCount = JSON.parse(JSON.stringify( res.posts ) );      
-    //   this.showQuiz();
-    // }, e=>{
-    // this.errorCheck = e;
-    // })
-    // setTimeout( () => {
-    //   this.errorCheck = '';
-    // }, 10000 );
   }
   showQuiz(){
       this.ctrRandom = Math.floor( Math.random() * ( this.questionsList.search.length - 1 + 1 )) + 0;
