@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Quiz } from '../../../quiz-module/services/quiz.service';
 import { POSTS, POST_DATA, PAGE_DATA } from '../../../quiz-module/interfaces/quiz-module.interface';
+import { AuthsessionService } from '../../../services/auth-session.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-quiztest',
@@ -20,15 +21,13 @@ export class QuiztestComponent implements OnInit {
   keys;
   questionsList;
   playerName: string;
-  constructor( private questions: Quiz, private router: Router ) { 
+  constructor( private questions: Quiz, private router: Router, private authSrvc: AuthsessionService ) { 
     this.ctrRandom = null;
     this.getQuestions();
   }
 
   ngOnInit() {
-    this.playerName = localStorage.getItem('playername');
-    if( this.playerName ) localStorage.removeItem('playername');
-    else this.router.navigate(['']);
+    this.playerName = this.authSrvc.sessionData.id;
     this.currentQuestion = {};
   }
 

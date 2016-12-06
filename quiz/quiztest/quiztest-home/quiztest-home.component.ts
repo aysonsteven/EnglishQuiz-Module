@@ -13,22 +13,9 @@ export class QuiztestHomeComponent implements OnInit {
   }
 
   onClickProceed(val){    
-    if( this.validateForm( val ) == false ) return;
-    console.log( val )
-    this.router.navigate(['game']);
-    localStorage.setItem('playername', val)
-  }
 
-  validateForm( val ){
-    if( val == '' || val == null ){
-      this.inputErrorCheck = 'please provide a name';
-      return false;
-    }
-    if( val.length <= 4 ){
-      this.inputErrorCheck = 'invalid name';
-      return false;
-    }
-    return true;
+    this.router.navigate(['game']);
+    
   }
 
 }
