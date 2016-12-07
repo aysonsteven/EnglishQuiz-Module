@@ -11,7 +11,7 @@ import { PlayerStatsService } from './../../../services/player-stats.service';
   styleUrls: ['./quiztest.component.scss']
 })
 export class QuiztestComponent implements OnInit {
-
+  loaderMessage:string;
   validate: string;
   loading:boolean = true;
   errorCheck:string;
@@ -33,6 +33,13 @@ export class QuiztestComponent implements OnInit {
     
     this.ctrRandom = null;
     this.getQuestions();
+
+    if(!this.currentQuestion){
+      this.loaderMessage = 'please wait...'
+      setTimeout( () => {
+        this.loaderMessage = 'no quiz yet.'
+      }, 3000);
+    }
 
   }
 
@@ -82,12 +89,11 @@ export class QuiztestComponent implements OnInit {
   randomizedQuestions(){
     if ( this.ctr >= this.questionCount.search.length ){
       console.log('end');
-      if(this.authSrvc.sessionData){
-        this.router.navigate(['final']);
-
+      if(!this.authSrvc.sessionData) {  
+        this.playerStats.playerStats.name = this.playerName;
+        console.info('name', this.playerName, ' ', this.playerStats.playerStats.name)
       }
-      else this.router.navigate(['final', this.playerName ]);
-
+        this.router.navigate(['final']);
         this.playerStats.playerStats.score = this.score;
         this.playerStats.playerStats.total = this.questionCount.search.length;
   }

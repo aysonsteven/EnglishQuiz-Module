@@ -25,7 +25,7 @@ export class QuizbuilderComponent implements OnInit {
     public sessionSrvc: AuthsessionService 
     ) { 
       if ( this.sessionSrvc.sessionData.session_id != '00f9f98f9b41f684afabbe3c77e63eb7' && this.sessionSrvc.sessionData.id == 'aysonsteven' ) {
-        console.log('session: ', this.sessionSrvc.sessionData.session_id)
+        // console.log('session: ', this.sessionSrvc.sessionData.session_id)
         this.routes.navigate(['']);
         return;
       }

@@ -30,25 +30,21 @@ export class QuiztestFinalComponent implements OnInit {
   }
 
   ngOnInit() {
-    if( this.playerStatsSrvc.playerStats ){
-      this.playerInfo.score =  this.playerStatsSrvc.playerStats.score;
-      this.playerInfo.total = this.playerStatsSrvc.playerStats.total;
-      console.log('check this score', this.playerInfo.score )
-    }
-    if(! this.playerInfo.score ) {
-      this.router.navigate( [ '' ] );
-      return;
-    }else{ this.postStat() }
-    if( ! this.authSrvc.sessionData ){   
-       this.route.params.forEach( ( params: Params ) =>{
-          this.playerInfo.name = params['id']
-        }) 
-    }
-    if( this.authSrvc.sessionData ) this.playerInfo.name = this.authSrvc.sessionData.id;
-  }
+    if( this.authSrvc.sessionData ){
+      this.playerstats.id = this.authSrvc.sessionData.id;
+      this.playerstats.varchar_1 = this.playerStatsSrvc.playerStats.score.toString();
+      this.playerstats.varchar_2 = this.playerStatsSrvc.playerStats.total;
+      this.playerstats.post_id = 'job';
+      this.playerstats.content = this.authSrvc.sessionData.id + "'s stat"
+      this.playerstats.subject = 'highscores';
+      this.playerstats.category = 'playerstats';
+      console.log( 'check this score', this.playerInfo.score )
 
-  checkPlayer(){
-
+    }
+    if( !this.authSrvc.sessionData){
+      console.log("TEST")
+      this.playerstats.id = this.playerStatsSrvc.playerStats.name;
+    }
   }
 
   onClickPlayAgain(){
@@ -60,15 +56,11 @@ export class QuiztestFinalComponent implements OnInit {
 
   postStat(){
     if( ! this.playerInfo.name ) return ;
-    this.playerstats.post_id = 'job';
-    this.playerstats.content = this.authSrvc.sessionData.id + "'s stat"
-    this.playerstats.subject = 'highscores';
-    this.playerstats.category = 'playerstats';
+
     this.question.add( this.playerstats, data =>{
       console.log( 'player stat posted susccessfull: ' + JSON.stringify( data ) );
     }, err =>{
       console.log( 'error posting player stat ', err );
     })
   }
-
 }

@@ -4,8 +4,9 @@ import { Injectable } from '@angular/core';
 export class PlayerStatsService {
 
   playerStats={
+    name: null,
     score: null,
-    total:null
+    total: null
   }
 
   constructor() { }

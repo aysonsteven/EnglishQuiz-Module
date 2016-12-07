@@ -1,16 +1,13 @@
+<button class="btn btn-secondary btn-sm" (click)="goToQuestionform()">Add Questions</button>
+<button class="btn btn-secondary btn-sm" (click)="onClickHighScores()">See HighScores</button>
+<br/><br/>
+
 <input type="text" class="form-control" [(ngModel)]="searchbar" (ngModelChange)="search()" placeholder="Search">
 
-
 <div errorWrap *ngIf="errorCheck">{{ errorCheck }}</div>
-  <button class="btn btn-secondary btn-sm" (click)="goToQuestionform()">Add Questions</button>
-  <br/>
 
-
-
-
-
-<ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
-  <ngb-panel id="{{ q.idx }}" title="{{ i + 1}}: {{ q.content }}" *ngFor="let q of questionsList.search; let i = index ">
+<ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="1">
+  <ngb-panel id="{{ i + 1 }}" title="{{ i + 1}}: {{ q.content }}" *ngFor="let q of questionsList.search; let i = index ">
     <template ngbPanelContent>
 
       <ol choices>

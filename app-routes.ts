@@ -21,7 +21,6 @@ const link: Routes = [
     { path: 'game/:id' , component: QuiztestComponent },
     { path: 'final', component: QuiztestFinalComponent },
     { path: 'final/:id', component: QuiztestFinalComponent },
-    { path: 'final', component: QuiztestFinalComponent },
     { path: 'logs', component: QuizLogComponent }
 ]
 

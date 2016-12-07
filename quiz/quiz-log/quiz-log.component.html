@@ -1,0 +1,17 @@
+<!--<div *ngFor="let quizlog of quizLogs.search">
+    <span>
+        {{ quizlog.content }} <br> {{ quizlog.user_name }}
+    </span>
+</div>-->
+
+<div class="container-fluid">
+  <div class="row" *ngFor="let quizlog of quizLogs.search">
+    <div class="col-sm-6">
+      {{ quizlog.user_name }}
+    </div>
+    <div class="col-sm-6">
+      {{ quizlog.varchar_4 }}
+    </div>
+    <hr/>
+  </div>
+</div>

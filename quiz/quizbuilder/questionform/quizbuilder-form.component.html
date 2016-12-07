@@ -12,7 +12,7 @@
     </div>
 
     <div class="form-group row">
-      <label for="choice1" class="col-xs-3 col-form-label">Choice2</label>
+      <label for="choice1" class="col-xs-3 col-form-label">Choice1</label>
       <div class="col-xs-9">
         <input class="form-control" type="text" id="choice1" [(ngModel)]="questionForm.varchar_1" name="choice1">
       </div>
@@ -43,10 +43,10 @@
       <label for="answer" class="col-xs-3 col-form-label">Answer</label>
       <div class="col-xs-9">
         <select class="form-control" id="exampleSelect2" [(ngModel)]="questionForm.varchar_5" name="answer">
-          <option *ngIf="questionForm.varchar_1" value='{{ questionForm.varchar_1 }}'>{{ questionForm.varchar_1 }}</option>
-          <option *ngIf="questionForm.varchar_2" value='{{ questionForm.varchar_2 }}'>{{ questionForm.varchar_2 }}</option>
-          <option *ngIf="questionForm.varchar_3" value='{{ questionForm.varchar_3 }}'>{{ questionForm.varchar_3 }}</option>
-          <option *ngIf="questionForm.varchar_4" value='{{ questionForm.varchar_4 }}'>{{ questionForm.varchar_4 }}</option>
+          <option *ngIf="questionForm.varchar_1" value='1'>{{ questionForm.varchar_1 }}</option>
+          <option *ngIf="questionForm.varchar_2" value='2'>{{ questionForm.varchar_2 }}</option>
+          <option *ngIf="questionForm.varchar_3" value='3'>{{ questionForm.varchar_3 }}</option>
+          <option *ngIf="questionForm.varchar_4" value='4'>{{ questionForm.varchar_4 }}</option>
         </select>
       </div>
     </div>

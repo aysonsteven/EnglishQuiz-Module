@@ -20,7 +20,7 @@ export class QuestionListComponent implements OnInit {
     private questions: Quiz,
     public sessionSrvc: AuthsessionService
     ) { 
-      if( this.sessionSrvc.sessionData.session_id != '00f9f98f9b41f684afabbe3c77e63eb7' && this.sessionSrvc.sessionData.id == 'aysonsteven' ){
+      if( this.sessionSrvc.sessionData.session_id != '00f9f98f9b41f684afabbe3c77e63eb7' && this.sessionSrvc.sessionData.id != 'aysonsteven' ){
         console.log('no permission')
         this.route.navigate(['']);
         return;
@@ -47,7 +47,7 @@ export class QuestionListComponent implements OnInit {
   search(){
     console.log("search()");
     let data = <SEARCH_QUERY_DATA> {};
-    data.fields = "content, varchar_1, varchar_2, varchar_3, varchar_4, varchar_5, category";
+    data.fields = "idx, content, varchar_1, varchar_2, varchar_3, varchar_4, varchar_5, category";
     data.from = "sf_post_data";
     data.where = "post_id='job' AND category= 'quiz' AND content LIKE'%" + this.searchbar + "%'"
     data.orderby = 'idx desc'
@@ -60,6 +60,11 @@ export class QuestionListComponent implements OnInit {
   onClickEdit( val ){
     this.route.navigate([ 'edit' , val ]);
   }
+
+  onClickHighScores(){
+    this.route.navigate(['logs']);
+  }
+
   getQuestions(){
 
     console.log( "LIST()" );
