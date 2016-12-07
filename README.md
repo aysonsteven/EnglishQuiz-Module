@@ -24,15 +24,15 @@ English Quiz Module
 ###After importing quiz module you can now use all the components from quizmodule
 
 
-##UPDATE:
-###Dec 6 2016 3:00PM posting registered user's stats
-###Dec 7, 2016 3:30AM Let non registered user to take quiz
-###Dec 7, 2016 10:40AM Searching/filtering
+###UPDATE:
+####Dec 6 2016 3:00PM posting registered user's stats
+####Dec 7, 2016 3:30AM Let non registered user to take quiz
+####Dec 7, 2016 10:40AM Searching/filtering
 
-##TODOs
-###Secure Admin routing
-###Prevent user to edit parameters score or hide it
-###Provide APK
+###TODOs
+####Secure Admin routing
+####Prevent user to edit parameters score or hide it
+####Provide APK
 
 #for admin routing:
     id: aysonsteven
