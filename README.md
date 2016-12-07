@@ -27,13 +27,12 @@ English Quiz Module
 
 ###UPDATE:
 ####Dec 1, 2016 4:00PM Questions CRUD
-####Dec 4, 2016 09:00AM Routing
-####Dec 4, 2016 10:00AM randomizing quiz without repeat
-####Dec 4, 2016 10:00AM form Validations
-####Dec 6, 2016 03:00PM posting registered user's stats
-####Dec 7, 2016 03:30APM Let non registered user to take quiz
+####Dec 4, 2016 09:AM Routing
+####Dec 4, 2016 10:AM randomizing quiz without repeat
+####Dec 4, 2016 10:AM form Validations
+####Dec 6, 2016 3:00PM posting registered user's stats
+####Dec 7, 2016 3:30AM Let non registered user to take quiz
 ####Dec 7, 2016 10:40AM Searching/filtering
-####Dec 7, 2016 2:46PM Prevent user to edit parameters or hide it
 
 ###TODOs
 ####Secure Admin routing
