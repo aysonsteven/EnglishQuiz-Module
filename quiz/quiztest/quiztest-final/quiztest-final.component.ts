@@ -39,9 +39,11 @@ export class QuiztestFinalComponent implements OnInit {
       this.router.navigate( [ '' ] );
       return;
     }else{ this.postStat() }
-    this.route.params.forEach( ( params: Params ) =>{
-      if( ! this.authSrvc.sessionData ){ this.playerInfo.name = +params['id']}
-    }) 
+    if( ! this.authSrvc.sessionData ){   
+       this.route.params.forEach( ( params: Params ) =>{
+          this.playerInfo.name = params['id']
+        }) 
+    }
     if( this.authSrvc.sessionData ) this.playerInfo.name = this.authSrvc.sessionData.id;
   }
 

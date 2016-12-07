@@ -1,5 +1,10 @@
+
 <div class="container-fluid">
 
+<div statusMessageContainer>
+  Status: <span errorWrap *ngIf="error">{{ error }}</span>
+</div>
+<br/>
 <form>
     <div class="form-group row">
       <label for="userid" class="col-xs-3 col-form-label">User ID</label>
@@ -41,7 +46,7 @@
     <div class="form-group row">
       <label for="mobile" class="col-xs-3 col-form-label">MobileNo</label>
       <div class="col-xs-9">
-        <input class="form-control" [(ngModel)]="registrationForm.mobile" type="text" id="mobile" name="mobile">
+        <input class="form-control" [(ngModel)]="registrationForm.mobile" type="number" id="mobile" name="mobile">
       </div>
     </div>
 

@@ -9,7 +9,7 @@ import { AuthsessionService } from '../services/auth-session.service';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  error = {};
+  error:string;
   message: string;
   registrationForm : MEMBER_DATA = <MEMBER_DATA> {};
 
@@ -21,7 +21,6 @@ export class RegistrationComponent implements OnInit {
       this.sessionSrvc.sessionData = this.user.logged();
     }
     
-
   ngOnInit() {
   }
 
@@ -36,22 +35,22 @@ export class RegistrationComponent implements OnInit {
     })
   }
 
-    loadUserData(){
-    if(!this.sessionSrvc.isLogged) return;
-    //
-    this.user.data( userdata => {
-      this.registrationForm.id = this.sessionSrvc.sessionData.id;
-      this.registrationForm.name = userdata.name;
-      this.registrationForm.email = userdata.email;
- 
-    }, error =>{
-      alert(error);
-    })
-  }
+  loadUserData(){
+  if(!this.sessionSrvc.isLogged) return;
+  //
+  this.user.data( userdata => {
+    this.registrationForm.id = this.sessionSrvc.sessionData.id;
+    this.registrationForm.name = userdata.name;
+    this.registrationForm.email = userdata.email;
+
+  }, error =>{
+    alert(error);
+  })
+}
 
   validation(){
-    if( this.registrationForm.id == null ){
-      this.error = { error: '*' }
+    if( this.registrationForm.id == null || this.registrationForm.id == '' ){
+      this.error = 'User ID is required'
       return false;
     }
   }

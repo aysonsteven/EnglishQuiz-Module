@@ -30,13 +30,14 @@ English Quiz Module
 ####Dec 4, 2016 09:AM Routing
 ####Dec 4, 2016 10:AM randomizing quiz without repeat
 ####Dec 4, 2016 10:AM form Validations
-####Dec 6, 2016 3:00PM posting registered user's stats
-####Dec 7, 2016 3:30AM Let non registered user to take quiz
+####Dec 6, 2016 03:00PM posting registered user's stats
+####Dec 7, 2016 03:30AM Let non registered user to take quiz
 ####Dec 7, 2016 10:40AM Searching/filtering
+####Dec 7, 2016 02:46PM Hide parameters to prevent users from changing the results
+
 
 ###TODOs
 ####Secure Admin routing
-####Prevent user to edit parameters score or hide it
 ####Provide APK
 
 ###Admin:
