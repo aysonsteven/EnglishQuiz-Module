@@ -11,6 +11,8 @@ export class AuthsessionService {
   constructor( private router: Router, private quiz: User ) { 
     this.sessionData = this.quiz.logged();
     this.checkLoginData();
+
+    console.log('session: this ' , this.sessionData.session_id)
    }
 
   checkLoginData(){

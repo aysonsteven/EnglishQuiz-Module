@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PAGE_DATA, POSTS, SEARCH_QUERY_DATA } from '../../../quiz-module/interfaces/quiz-module.interface'
 import { Quiz } from '../../../quiz-module/services/quiz.service';
+import { AuthsessionService } from './../../../services/auth-session.service';
 
 @Component({
   selector: 'app-question-list',
@@ -14,7 +15,16 @@ export class QuestionListComponent implements OnInit {
 
   questionsList = <POSTS>{};
 
-  constructor( private route: Router, private questions: Quiz ) { 
+  constructor( 
+    private route: Router, 
+    private questions: Quiz,
+    public sessionSrvc: AuthsessionService
+    ) { 
+      if( this.sessionSrvc.sessionData.session_id != '00f9f98f9b41f684afabbe3c77e63eb7' && this.sessionSrvc.sessionData.id == 'aysonsteven' ){
+        console.log('no permission')
+        this.route.navigate(['']);
+        return;
+      }
     this.getQuestions();
   }
 

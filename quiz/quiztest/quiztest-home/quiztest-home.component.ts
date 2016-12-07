@@ -14,7 +14,9 @@ export class QuiztestHomeComponent implements OnInit {
   }
 
   onClickProceed( name? ){    
-    if( this.validate ( name ) == false ) return;
+    if( name ){
+      if( this.validate ( name ) == false ) return;
+    }
     this.router.navigate(['game', name ]);
     
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Quiz, POST_DATA} from '../../../quiz-module/services/quiz.service'
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { AuthsessionService } from './../../../services/auth-session.service'
 
 
 @Component({
@@ -17,7 +18,17 @@ export class QuizbuilderComponent implements OnInit {
   questionForm: POST_DATA = <POST_DATA> {};
 
   category:string;
-  constructor( private question: Quiz, private routes: Router, private route: ActivatedRoute ) { 
+  constructor( 
+    private question: Quiz, 
+    private routes: Router, 
+    private route: ActivatedRoute,
+    public sessionSrvc: AuthsessionService 
+    ) { 
+      if ( this.sessionSrvc.sessionData.session_id != '00f9f98f9b41f684afabbe3c77e63eb7' && this.sessionSrvc.sessionData.id == 'aysonsteven' ) {
+        console.log('session: ', this.sessionSrvc.sessionData.session_id)
+        this.routes.navigate(['']);
+        return;
+      }
     this.route.params.forEach( ( params: Params ) =>{
       this.idx = +params['idx'];
     })
