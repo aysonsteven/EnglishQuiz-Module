@@ -34,10 +34,11 @@ English Quiz Module
 ####Dec 7, 2016 03:30AM Let non registered user to take quiz
 ####Dec 7, 2016 10:40AM Searching/filtering
 ####Dec 7, 2016 02:46PM Hide parameters to prevent users from changing the results
+####Dec 7, 2016 08:00PM Check User/Admin
 
 
 ###TODOs
-####Secure Admin routing
+####File/Photo Upload
 ####Provide APK
 
 ###Admin:
