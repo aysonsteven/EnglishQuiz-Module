@@ -2,8 +2,8 @@
   <h1 class="display-3">{{ playerInfo.name }}</h1>
   <p class="lead">Ccongratulations you've just finished the quiz, you can see below your stats.</p>
   <hr class="my-2">
-  <p>You've got {{ playerInfo.score / 2}} correct answer out of {{ playerInfo.total }}</p>
-  <p>Total Score: {{ playerInfo.score }}</p>
+  <p>You've got {{ playerStatsSrvc.playerStats.score / 2}} correct answer out of {{ playerStatsSrvc.playerStats.total }}</p>
+  <p>Total Score: {{ playerStatsSrvc.playerStats.score }}</p>
   <p class="lead">
     <a class="btn btn-primary btn-lg"  role="button" (click)="onClickPlayAgain()">Play Again</a>
   </p>

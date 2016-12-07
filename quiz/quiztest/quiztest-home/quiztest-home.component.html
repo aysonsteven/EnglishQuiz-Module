@@ -1,3 +1,13 @@
 <h4>Quiz App</h4>
 
-      <button submitBtn type="button"  class="btn btn-secondary" (click)="onClickProceed()">Proceed</button>
+
+    <div class="form-group row" *ngIf="!authSrvc.sessionData">
+      <label for="plasyername" class="col-xs-3 col-form-label">Name: </label>
+        <div class="col-xs-9">
+              <input type="text" class="form-control" [(ngModel)]="name">
+        </div>
+    </div>
+
+      <button submitBtn type="button"  class="btn btn-secondary" (click)="onClickProceed(name)" *ngIf="!authSrvc.sessionData">Play</button>
+      <button submitBtn type="button"  class="btn btn-secondary" (click)="onClickProceed()" *ngIf="authSrvc.sessionData">Play</button>
+      

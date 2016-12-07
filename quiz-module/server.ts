@@ -11,10 +11,6 @@ export class API {
 
     constructor( public http: Http ){}
 
-    getLogin():  MEMBER_LOGIN_DATA{
-        return this.getLogin();
-    }
-
     saveCache( cache_id, data ) {
         localStorage.setItem( cache_id, JSON.stringify(data) );
     }

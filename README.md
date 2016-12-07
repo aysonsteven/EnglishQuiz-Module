@@ -16,18 +16,35 @@ English Quiz Module
     on app.module import ngb Module it should be like this:
     import ngBootstrap to the main module : mport {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     imports: [NgbModule.forRoot(), ...]
+#### import the quiz module
+#####import { QuizModule } from './quizmodule/quiz.module';
+#####imports: [ QuizModule ]
+#####After installation you can now use the English Quiz Module
 
-##After installation you can now use the English Quiz Module
-###Just import the quiz module
-####import { QuizModule } from './quizmodule/quiz.module';
-####imports: [ QuizModule ]
-###After importing quiz module you can now use all the components from quizmodule
 
-#for admin routing:
+
+
+
+###UPDATE:
+####Dec 1, 2016 4:00PM Questions CRUD
+####Dec 4, 2016 09:00AM Routing
+####Dec 4, 2016 10:00AM randomizing quiz without repeat
+####Dec 4, 2016 10:00AM form Validations
+####Dec 6, 2016 03:00PM posting registered user's stats
+####Dec 7, 2016 03:30APM Let non registered user to take quiz
+####Dec 7, 2016 10:40AM Searching/filtering
+####Dec 7, 2016 2:46PM Prevent user to edit parameters or hide it
+
+###TODOs
+####Secure Admin routing
+####Prevent user to edit parameters score or hide it
+####Provide APK
+
+###Admin:
     id: aysonsteven
     pw: mypassword
 
 https://quizbuilder-7c420.firebaseapp.com
 
-#backup and testing.
+###backup and testing.
     englishquizsample.esy.es

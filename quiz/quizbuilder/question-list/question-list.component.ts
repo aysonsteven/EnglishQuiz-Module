@@ -9,7 +9,7 @@ import { Quiz } from '../../../quiz-module/services/quiz.service';
   styleUrls: ['./question-list.component.scss']
 })
 export class QuestionListComponent implements OnInit {
-
+  searchbar:string;
   errorCheck:string;
 
   questionsList = <POSTS>{};
@@ -39,8 +39,10 @@ export class QuestionListComponent implements OnInit {
     let data = <SEARCH_QUERY_DATA> {};
     data.fields = "content, varchar_1, varchar_2, varchar_3, varchar_4, varchar_5, category";
     data.from = "sf_post_data";
-    data.where = "post_id='job' AND category='quiz'"
+    data.where = "post_id='job' AND category= 'quiz' AND content LIKE'%" + this.searchbar + "%'"
+    data.orderby = 'idx desc'
     this.questions.search( data, re => {
+      this.questionsList = re;
       console.log("search result: ", re);
     }, error => alert("error on search: " + error ) );
   }

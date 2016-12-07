@@ -1,9 +1,12 @@
-<button (click)="search()">search</button>
+<input type="text" class="form-control" [(ngModel)]="searchbar" (ngModelChange)="search()" placeholder="Search">
+
 
 <div errorWrap *ngIf="errorCheck">{{ errorCheck }}</div>
   <button class="btn btn-secondary btn-sm" (click)="goToQuestionform()">Add Questions</button>
   <br/>
-  <ul>
+
+
+
 
 
 <ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
@@ -27,3 +30,4 @@
 
   
 </ngb-accordion>
+<section *ngIf="questionsList.search?.length == 0">nothing to show</section>

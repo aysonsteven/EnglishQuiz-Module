@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Quiz, POST_DATA} from '../../../quiz-module/services/quiz.service'
 import { AuthsessionService } from '../../../services/auth-session.service';
-
+import { PlayerStatsService } from './../../../services/player-stats.service';
 
 @Component({
   selector: 'app-quiztest-final',
@@ -13,26 +13,40 @@ export class QuiztestFinalComponent implements OnInit {
   playerstats = <POST_DATA>{};
   playerInfo={
     score: null,
-    name: this.authSrvc.sessionData.id ,
+    name: null ,
     state: '',
     total: null,
   }
   test;
-  constructor( private router: Router, private question: Quiz, private route: ActivatedRoute, private authSrvc: AuthsessionService ) { 
+  constructor( 
+    private router: Router, 
+    private question: Quiz, 
+    private route: ActivatedRoute, 
+    private authSrvc: AuthsessionService ,
+    private playerStatsSrvc: PlayerStatsService
+    ) { 
 
     
   }
 
   ngOnInit() {
+    if( this.playerStatsSrvc.playerStats ){
+      this.playerInfo.score =  this.playerStatsSrvc.playerStats.score;
+      this.playerInfo.total = this.playerStatsSrvc.playerStats.total;
+      console.log('check this score', this.playerInfo.score )
+    }
+    if(! this.playerInfo.score ) {
+      this.router.navigate( [ '' ] );
+      return;
+    }else{ this.postStat() }
     this.route.params.forEach( ( params: Params ) =>{
-      this.playerInfo.score = +params['score'];
-      this.playerInfo.total = +params['total'];
+      if( ! this.authSrvc.sessionData ){ this.playerInfo.name = +params['id']}
     }) 
+    if( this.authSrvc.sessionData ) this.playerInfo.name = this.authSrvc.sessionData.id;
+  }
 
-    if( this.playerInfo.name ){
+  checkPlayer(){
 
-      this.postStat();
-    }else this.router.navigate( [ 'game' ] )
   }
 
   onClickPlayAgain(){
