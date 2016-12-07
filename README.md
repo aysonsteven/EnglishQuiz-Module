@@ -34,11 +34,11 @@ English Quiz Module
 ####Prevent user to edit parameters score or hide it
 ####Provide APK
 
-#for admin routing:
+###Admin:
     id: aysonsteven
     pw: mypassword
 
 https://quizbuilder-7c420.firebaseapp.com
 
-#backup and testing.
+###backup and testing.
     englishquizsample.esy.es
