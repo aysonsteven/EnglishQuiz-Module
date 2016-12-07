@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Quiz } from '../../../quiz-module/services/quiz.service';
 import { POSTS, POST_DATA, PAGE_DATA, SEARCH_QUERY_DATA } from '../../../quiz-module/interfaces/quiz-module.interface';
 import { AuthsessionService } from '../../../services/auth-session.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 @Component({
   selector: 'app-quiztest',
   templateUrl: './quiztest.component.html',
@@ -20,17 +20,24 @@ export class QuiztestComponent implements OnInit {
   ctrRandom:number;
   keys;
   questionsList;
-  playerName: string;
-  constructor( private questions: Quiz, private router: Router, private authSrvc: AuthsessionService ) { 
-    if(! this.authSrvc.sessionData ) this.router.navigate(['']);
+  playerName:string;
+  constructor( private questions: Quiz, private router: Router, private authSrvc: AuthsessionService, private route:ActivatedRoute ) { 
+    
     this.ctrRandom = null;
     this.getQuestions();
 
   }
 
   ngOnInit() {
-    this.playerName = this.authSrvc.sessionData.id;
+    if(this.authSrvc.sessionData)this.playerName = this.authSrvc.sessionData.id;
+    else {
+      this.route.params.forEach( ( params: Params ) =>{
+             this.playerName = params['id']
+            
+          }) 
+    }
     this.currentQuestion = {};
+    // if(! this.playerName ) this.router.navigate(['']);
   }
 
   getQuestions(){
@@ -67,8 +74,9 @@ export class QuiztestComponent implements OnInit {
   randomizedQuestions(){
     if ( this.ctr >= this.questionCount.search.length ){
       console.log('end');
-      this.router.navigate(['final', this.score.toString(), this.questionCount.search.length.toString() ]);
-    }
+      if(this.authSrvc.sessionData)this.router.navigate(['final', this.score.toString(), this.questionCount.search.length.toString() ]);
+      else this.router.navigate(['final', this.playerName , this.score.toString(), this.questionCount.search.length.toString() ]);
+  }
     this.questionsList.search.splice( this.ctrRandom, 1 );    
     this.ctrRandom = Math.floor(Math.random() * (this.questionsList.search.length - 1 + 1));
     this.currentQuestion = this.questionsList.search[this.ctrRandom];

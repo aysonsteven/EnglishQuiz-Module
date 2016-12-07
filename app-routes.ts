@@ -18,7 +18,10 @@ const link: Routes = [
     { path: 'add', component: QuizbuilderComponent },
     { path: 'edit/:idx', component: QuizbuilderComponent },
     { path: 'game' , component: QuiztestComponent },
+    { path: 'game/:id' , component: QuiztestComponent },
     { path: 'final/:score/:total', component: QuiztestFinalComponent },
+    { path: 'final/:id/:score/:total', component: QuiztestFinalComponent },
+    { path: 'final', component: QuiztestFinalComponent },
     { path: 'logs', component: QuizLogComponent }
 ]
 

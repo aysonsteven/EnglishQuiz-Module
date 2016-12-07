@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthsessionService } from './../../../services/auth-session.service';
 
 @Component({
   selector: 'app-quiztest-home',
@@ -8,13 +9,13 @@ import { Router } from '@angular/router';
 })
 export class QuiztestHomeComponent implements OnInit {
   inputErrorCheck:string;
-  constructor( private router: Router ) { }
+  constructor( private router: Router, public authSrvc: AuthsessionService ) { }
   ngOnInit() {
   }
 
-  onClickProceed(){    
+  onClickProceed( val? ){    
 
-    this.router.navigate(['game']);
+    this.router.navigate(['game', val ]);
     
   }
 

@@ -13,26 +13,38 @@ export class QuiztestFinalComponent implements OnInit {
   playerstats = <POST_DATA>{};
   playerInfo={
     score: null,
-    name: this.authSrvc.sessionData.id ,
+    name: null ,
     state: '',
     total: null,
   }
   test;
-  constructor( private router: Router, private question: Quiz, private route: ActivatedRoute, private authSrvc: AuthsessionService ) { 
+  constructor( 
+    private router: Router, 
+    private question: Quiz, 
+    private route: ActivatedRoute, 
+    private authSrvc: AuthsessionService 
+    ) { 
 
     
   }
 
   ngOnInit() {
+    if(! this.playerInfo.score ) {
+      this.router.navigate( [ '' ] );
+      return;
+    }else{ this.postStat() }
     this.route.params.forEach( ( params: Params ) =>{
+      if( ! this.authSrvc.sessionData ){ this.playerInfo.name = +params['name']}
       this.playerInfo.score = +params['score'];
       this.playerInfo.total = +params['total'];
     }) 
+    if( this.authSrvc.sessionData ) this.playerInfo.name = this.authSrvc.sessionData.id;
 
-    if( this.playerInfo.name ){
 
-      this.postStat();
-    }else this.router.navigate( [ 'game' ] )
+  }
+
+  checkPlayer(){
+
   }
 
   onClickPlayAgain(){
