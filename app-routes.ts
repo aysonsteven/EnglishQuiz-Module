@@ -9,10 +9,11 @@ import { QuizbuilderComponent } from './quiz/quizbuilder/questionform/quizbuilde
 import { QuiztestHomeComponent } from './quiz/quiztest/quiztest-home/quiztest-home.component';
 import { QuiztestFinalComponent } from './quiz/quiztest/quiztest-final/quiztest-final.component';
 import { QuizLogComponent } from './quiz/quiz-log/quiz-log.component';
-
+import { QuestionListComponent } from './quiz/quizbuilder/question-list/question-list.component';
 const link: Routes = [
     { path: '', redirectTo:'/home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent },
+    { path: 'home', component: QuiztestHomeComponent },
+    { path: 'adminhome', component: QuestionListComponent },
     { path: 'register', component: RegistrationComponent },
     { path: 'login', component: AuthenticationComponent },
     { path: 'add', component: QuizbuilderComponent },

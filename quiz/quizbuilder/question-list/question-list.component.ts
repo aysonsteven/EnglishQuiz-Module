@@ -20,9 +20,9 @@ export class QuestionListComponent implements OnInit {
     private questions: Quiz,
     public sessionSrvc: AuthsessionService
     ) { 
-      if( this.sessionSrvc.sessionData.session_id != '00f9f98f9b41f684afabbe3c77e63eb7' && this.sessionSrvc.sessionData.id != 'aysonsteven' ){
+      if( this.sessionSrvc.sessionData.session_id != this.sessionSrvc.adminroute.id && this.sessionSrvc.sessionData.id != 'aysonsteven' ){
         console.log('no permission')
-        this.route.navigate(['']);
+        this.route.navigate(['quizhome']);
         return;
       }
     this.getQuestions();
@@ -50,7 +50,7 @@ export class QuestionListComponent implements OnInit {
     data.fields = "idx, content, varchar_1, varchar_2, varchar_3, varchar_4, varchar_5, category";
     data.from = "sf_post_data";
     data.where = "post_id='job' AND category= 'quiz' AND content LIKE'%" + this.searchbar + "%'"
-    data.orderby = 'idx desc'
+    data.orderby = 'idx asc'
     this.questions.search( data, re => {
       this.questionsList = re;
       console.log("search result: ", re);
@@ -72,7 +72,7 @@ export class QuestionListComponent implements OnInit {
     data.fields = "idx, content, varchar_1, varchar_2, varchar_3, varchar_4, varchar_5, category";
     data.from = "sf_post_data";
     data.where = "post_id='job' AND category='quiz'";
-    data.orderby = 'idx desc'
+    data.orderby = 'idx asc'
     this.questions.search( data, re => {
       this.questionsList = re;
     }, error => alert("error on search: " + error ) );

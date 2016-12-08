@@ -10,7 +10,8 @@ import { AuthsessionService } from '../services/auth-session.service';
 export class HomeComponent implements OnInit {
 
   constructor( private sessionSrvc: AuthsessionService, private user: User ) {
-         
+    
+    // console.log('home checkadminroute',this.sessionSrvc.adminroute.id)
    }
 
   ngOnInit() {

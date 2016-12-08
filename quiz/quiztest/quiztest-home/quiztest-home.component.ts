@@ -14,11 +14,12 @@ export class QuiztestHomeComponent implements OnInit {
   }
 
   onClickProceed( name? ){    
-    if( name ){
-      if( this.validate ( name ) == false ) return;
+
+    if( !this.authSrvc.sessionData ){
+      if( this.validate ( name ) == false) return;
+      this.router.navigate([ 'game', name ])
     }
-    this.router.navigate(['game', name ]);
-    
+    if( this.authSrvc.sessionData ) this.router.navigate( [ 'game' ] )
   }
   onChangeInput( name? ){
     if( this.validate ( name ) == false ) return;

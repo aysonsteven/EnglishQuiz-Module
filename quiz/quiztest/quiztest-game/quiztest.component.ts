@@ -8,7 +8,7 @@ import { PlayerStatsService } from './../../../services/player-stats.service';
 @Component({
   selector: 'app-quiztest',
   templateUrl: './quiztest.component.html',
-  styleUrls: ['./quiztest.component.scss']
+  styleUrls: [ './quiztest.component.scss' ]
 })
 export class QuiztestComponent implements OnInit {
   loaderMessage:string;
@@ -34,7 +34,7 @@ export class QuiztestComponent implements OnInit {
     this.ctrRandom = null;
     this.getQuestions();
 
-    if(!this.currentQuestion){
+    if( !this.currentQuestion ){
       this.loaderMessage = 'please wait...'
       setTimeout( () => {
         this.loaderMessage = 'no quiz yet.'
@@ -47,10 +47,12 @@ export class QuiztestComponent implements OnInit {
     if(this.authSrvc.sessionData)this.playerName = this.authSrvc.sessionData.id;
     else {
       this.route.params.forEach( ( params: Params ) =>{
-             this.playerName = params['id']
+             this.playerName = params[ 'id' ]
             
-          }) 
+          })
+          
     }
+    if(! this.playerName) this.router.navigate( [ '' ] ) 
     this.currentQuestion = {};
     // if(! this.playerName ) this.router.navigate(['']);
   }
@@ -65,12 +67,12 @@ export class QuiztestComponent implements OnInit {
       this.questionsList = re;
       this.questionCount = JSON.parse(JSON.stringify( re ) );
 
-      console.log('this is re' , this.questionsList)
+      console.log( 'this is re' , this.questionsList )
       this.showQuiz();
     }, error => alert("error on search: " + error ) );
   }
   showQuiz(){
-      this.ctrRandom = Math.floor( Math.random() * ( this.questionsList.search.length - 1 + 1 )) + 0;
+      this.ctrRandom = Math.floor( Math.random() * ( this.questionsList.search.length - 1 + 1 ) ) + 0;
       this.currentQuestion = this.questionsList.search[this.ctrRandom];
       if( this.ctrRandom ) this.loading = false;
   }
@@ -87,25 +89,27 @@ export class QuiztestComponent implements OnInit {
   }
 
   randomizedQuestions(){
+      
+    if( ! this.authSrvc.sessionData ) {  
+      this.playerStats.playerStats.name = this.playerName;
+      console.info( 'name', this.playerName, ' ', this.playerStats.playerStats.name )
+    }
     if ( this.ctr >= this.questionCount.search.length ){
-      console.log('end');
-      if(!this.authSrvc.sessionData) {  
-        this.playerStats.playerStats.name = this.playerName;
-        console.info('name', this.playerName, ' ', this.playerStats.playerStats.name)
-      }
-        this.router.navigate(['final']);
-        this.playerStats.playerStats.score = this.score;
-        this.playerStats.playerStats.total = this.questionCount.search.length;
+      console.log( 'end' );
+      this.router.navigate( [ 'final' ] );
+      this.playerStats.playerStats.score = this.score;
+      this.playerStats.playerStats.total = this.questionCount.search.length;
   }
+
     this.questionsList.search.splice( this.ctrRandom, 1 );    
-    this.ctrRandom = Math.floor(Math.random() * (this.questionsList.search.length - 1 + 1));
-    this.currentQuestion = this.questionsList.search[this.ctrRandom];
+    this.ctrRandom = Math.floor( Math.random() * ( this.questionsList.search.length - 1 + 1 ) );
+    this.currentQuestion = this.questionsList.search[ this.ctrRandom ];
   }
 
   validateQuiz( val ){
     if( val == null ){
       this.validate = 'No answer selected'
-      console.log(this.validate);
+      console.log( this.validate );
       return false;
     }
     this.validate = '';

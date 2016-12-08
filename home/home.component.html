@@ -1,15 +1,13 @@
 <div class="container-fluid">
 
-  <div *ngIf="sessionSrvc.sessionData && sessionSrvc.sessionData.id == 'aysonsteven' ">
+<section *ngIf="sessionSrvc.adminroute">
+  <div *ngIf="sessionSrvc.sessionData && sessionSrvc.sessionData.id == sessionSrvc.adminroute?.id ">
     <app-question-list></app-question-list>
   </div>
 
-  <div *ngIf="! sessionSrvc.sessionData || sessionSrvc.sessionData.id != 'aysonsteven' ">
+  <div *ngIf="! sessionSrvc.sessionData || sessionSrvc.sessionData.id != sessionSrvc.adminroute?.id ">
     <app-quiztest-home></app-quiztest-home>
   </div>
-
-  <!--<div *ngIf="!sessionSrvc.sessionData">
-    You're not logged in.
-  </div>-->
+</section>
   
 </div>

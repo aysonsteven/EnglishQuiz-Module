@@ -39,16 +39,18 @@ export class QuiztestFinalComponent implements OnInit {
       this.playerstats.subject = 'highscores';
       this.playerstats.category = 'playerstats';
       console.log( 'check this score', this.playerInfo.score )
-
+      // this.postStat();
     }
     if( !this.authSrvc.sessionData){
       console.log("TEST")
       this.playerstats.id = this.playerStatsSrvc.playerStats.name;
+      console.log('playerstats.id' , this.playerstats.id )
     }
   }
 
   onClickPlayAgain(){
-    this.router.navigate( [ 'game' ] );
+    if( !this.authSrvc.sessionData ){ this.router.navigate( [ 'game', this.playerstats.id ] ); return; }
+    this.router.navigate(['game'])
   }
   onClickChangeName(){
     this.router.navigate( [ 'home' ] )

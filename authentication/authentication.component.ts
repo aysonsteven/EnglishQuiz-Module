@@ -44,7 +44,7 @@ export class AuthenticationComponent implements OnInit {
     this.user.login( this.loginForm , res=> {
       this.formStatus.loader = '';
       this.session.sessionData = res;
-      this.routes.navigate(['']);
+      this.checkUserAndAdmin();
     }, error=>{
       this.formStatus.loader = '';
       this.formStatus.error = 'Server : ' + error;
@@ -77,6 +77,14 @@ export class AuthenticationComponent implements OnInit {
       this.formStatus.pword = 'password must be 6 or more';
       this.isValid = false;
     }
+  }
+
+  checkUserAndAdmin(){
+    if( this.session.sessionData.id == this.session.adminroute.id ){
+      this.routes.navigate(['adminhome']);
+      return;
+    }
+    this.routes.navigate(['home']);
   }
 
   

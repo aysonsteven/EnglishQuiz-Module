@@ -11,7 +11,8 @@
         
         <div class="container collapse navbar-toggleable-md"  id="exCollapsingNavbar">
             <div class="nav navbar-nav">
-                <a class="nav-link nav-item pull-xs-right" routerLink="/home">Home</a>
+                <a *ngIf="! sessionSrvc.sessionData || sessionSrvc.sessionData.id != sessionSrvc.adminroute?.id " class="nav-link nav-item pull-xs-right" routerLink="/home">Home</a>
+                <a *ngIf="sessionSrvc.sessionData && sessionSrvc.sessionData.id == sessionSrvc.adminroute?.id " class="nav-link nav-item pull-xs-right" routerLink="/adminhome">Home</a>                
                 <a *ngIf="!sessionSrvc.sessionData"  class="nav-link nav-item pull-xs-right" routerLink="login">Login</a>
                 <a *ngIf="!sessionSrvc.sessionData"  class="nav-link nav-item pull-xs-right" routerLink="register">Register</a>
                 <a *ngIf="sessionSrvc.sessionData"   class="nav-link nav-item pull-xs-right" routerLink="" (click)="onClickLogout()">logout</a>
