@@ -12,6 +12,7 @@ import * as _ from 'lodash'
   styleUrls: [ './quiztest.component.scss' ]
 })
 export class QuiztestComponent implements OnInit {
+  x:number = 0;
   choices = [];
   loaderMessage:string;
   validate: string;
@@ -36,6 +37,7 @@ export class QuiztestComponent implements OnInit {
     
     this.ctrRandom = null;
     this.getQuestions();
+    this.getChoices();
 
     if( !this.currentQuestion ){
       this.loaderMessage = 'please wait...'
@@ -47,7 +49,7 @@ export class QuiztestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getChoices();
+    
     if(this.authSrvc.sessionData)this.playerName = this.authSrvc.sessionData.id;
     else {
       this.playerName = this.activatedRoute.snapshot.params['id'];
@@ -65,27 +67,23 @@ export class QuiztestComponent implements OnInit {
     data.where = "post_id='job' AND category='quiz'";
     this.questions.search( data, re=>{
       let choicesObj = re.search[this.ctrRandom]
+      let temp = [];
+    for ( let key in choicesObj) {
+      this.x +=1;
+      temp.push({key: this.x, value:choicesObj[key]});
+    }
+    this.choices = _.shuffle(temp)
 
-    // for ( let key in choicesObj) {
-    //   this.choices.push(choicesObj[key]);
-    // }
-    // console.log('obj', choicesObj);
-    // console.log('arr',this.choices)
-    // console.log('randomize',this.choices.sort(function(a, b){return 0.5 - Math.random()}));
-
-    let obj = [
-      {key:'1', choice1:'test1' },
-      {key:'2', choice1:'test2' },
-      {key:'3', choice1:'test3' },
-      {key:'4', choice1:'test4' },
-      {key:'5', choice1:'test5' }
-    ];
-    console.log('shuffle', _.shuffle(choicesObj))
-        }, err=>{})
+        }, err=>{
+          console.error('err getting choices', err)
+        })
   }
-
   shuffle( choices ){
-
+    for ( let key in choices) {
+      this.x +=1;
+      this.choices.push({key: this.x, value:choices[key]});
+    }
+    console.log('shuffle', _.shuffle(this.choices))
   }
 
   getQuestions(){
@@ -109,6 +107,9 @@ export class QuiztestComponent implements OnInit {
   }
 
   onClickProceed( val ){
+    this.x = 0;
+    this.choices = [];
+    this.getChoices();
     if( this.validateQuiz( val ) == false ) return;
     this.validate = '';
     this.ctr+=1;

@@ -24,7 +24,7 @@ English Quiz Module
 
 
 ###UPDATE:
-####Dec 1, 2016 4:00PM Questions CRUD
+####Dec 1, 2016 04:00PM Questions CRUD
 ####Dec 4, 2016 09:AM Routing
 ####Dec 4, 2016 10:AM randomizing quiz without repeat
 ####Dec 4, 2016 10:AM form Validations
@@ -33,9 +33,10 @@ English Quiz Module
 ####Dec 7, 2016 10:40AM Searching/filtering
 ####Dec 7, 2016 02:46PM Hide parameters to prevent users from changing the results
 ####Dec 7, 2016 08:00PM Moved the admin/user checking to the login/authentication component
-
+####Dec 9, 2016 04:46AM Randomized Choices with keyindex
 
 ###TODOs
+####Timer
 ####File/Photo Upload
 ####Provide APK
 

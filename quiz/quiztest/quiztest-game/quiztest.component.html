@@ -16,32 +16,13 @@
   <br/>
 <section quizForm>
   <form id="check">
-    <div class="form-check">
-      <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="radio" id="exampleRadios1" value="1" [(ngModel)]="radio">
-        {{ currentQuestion?.varchar_1 }}
+    <div class="form-check" *ngFor="let c of choices">
+      <label class="form-check-label" >
+        <input class="form-check-input" type="radio" name="radio" id="exampleRadios1" value="{{c.key}}" [(ngModel)]="radio">
+        {{ c?.value }}
       </label>
     </div>
 
-    <div class="form-check">
-      <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="radio" id="exampleRadios1" value="option1" value="2" [(ngModel)]="radio">
-        {{ currentQuestion?.varchar_2 }}
-      </label>
-    </div>
-    <div class="form-check">
-      <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="radio" id="exampleRadios1" value="option1" value="3" [(ngModel)]="radio">
-        {{ currentQuestion?.varchar_3 }}
-      </label>
-    </div>
-
-    <div class="form-check">
-      <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="radio" id="exampleRadios1" value="option1" value="4" [(ngModel)]="radio">
-        {{ currentQuestion?.varchar_4 }}
-      </label>
-    </div>
     <button type="button" btnSubmit class="btn btn-secondary" (click)="onClickProceed(radio)">Submit</button>
   </form>
 </section>
