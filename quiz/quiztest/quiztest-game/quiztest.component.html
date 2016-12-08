@@ -10,6 +10,7 @@
 
 
 <section loaderMessage *ngIf="!currentQuestion"> {{ loaderMessage }}</section>
+{{ ticks }}
 <section *ngIf="currentQuestion">
     {{ ctr + 1 }}  {{ questionCount?.search.length }}
   <div queztionContainer>{{ currentQuestion?.content }}</div>

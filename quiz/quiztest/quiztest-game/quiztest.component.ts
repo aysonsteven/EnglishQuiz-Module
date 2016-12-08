@@ -4,7 +4,8 @@ import { POSTS, POST_DATA, PAGE_DATA, SEARCH_QUERY_DATA } from '../../../quiz-mo
 import { AuthsessionService } from '../../../services/auth-session.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PlayerStatsService } from './../../../services/player-stats.service';
-import * as _ from 'lodash'
+import * as _ from 'lodash';
+import { Observable } from 'rxjs/RX';
 
 @Component({
   selector: 'app-quiztest',
@@ -12,7 +13,8 @@ import * as _ from 'lodash'
   styleUrls: [ './quiztest.component.scss' ]
 })
 export class QuiztestComponent implements OnInit {
-  x:number = 0;
+  ticks:number = 0;
+  keyIndex:number = 0;
   choices = [];
   loaderMessage:string;
   validate: string;
@@ -23,9 +25,9 @@ export class QuiztestComponent implements OnInit {
   score:number = 0;
   ctr: number = 0;
   ctrRandom:number;
-  keys;
   questionsList;
   playerName:string;
+  
   constructor( 
     private questions: Quiz, 
     private router: Router, 
@@ -48,8 +50,22 @@ export class QuiztestComponent implements OnInit {
 
   }
 
+  timer(){
+
+    let timer = Observable.timer(2000,1000);
+    timer.subscribe(time=>{
+      this.ticks = time
+      if( time == 10){
+        this.onClickProceed(time);
+        timer = null;
+        this.timer();
+        return;
+      }
+    });
+  }
+
   ngOnInit() {
-    
+    this.timer();
     if(this.authSrvc.sessionData)this.playerName = this.authSrvc.sessionData.id;
     else {
       this.playerName = this.activatedRoute.snapshot.params['id'];
@@ -61,6 +77,7 @@ export class QuiztestComponent implements OnInit {
   }
 
   getChoices(){
+    
     let data = <SEARCH_QUERY_DATA> {};
     data.fields = "varchar_1, varchar_2, varchar_3, varchar_4";
     data.from = "sf_post_data";
@@ -68,22 +85,22 @@ export class QuiztestComponent implements OnInit {
     this.questions.search( data, re=>{
       let choicesObj = re.search[this.ctrRandom]
       let temp = [];
-    for ( let key in choicesObj) {
-      this.x +=1;
-      temp.push({key: this.x, value:choicesObj[key]});
-    }
-    this.choices = _.shuffle(temp)
+      for ( let key in choicesObj ) {
+        this.keyIndex +=1;
+        temp.push({key: this.keyIndex, value:choicesObj[key]});
+      }
+      this.choices = _.shuffle(temp)
 
         }, err=>{
           console.error('err getting choices', err)
         })
   }
   shuffle( choices ){
-    for ( let key in choices) {
-      this.x +=1;
-      this.choices.push({key: this.x, value:choices[key]});
+    for ( let key in choices ) {
+      this.keyIndex +=1;
+      this.choices.push( { key: this.keyIndex, value:choices[ key ] } );
     }
-    console.log('shuffle', _.shuffle(this.choices))
+    console.log('shuffle', _.shuffle( this.choices ) )
   }
 
   getQuestions(){
@@ -98,16 +115,17 @@ export class QuiztestComponent implements OnInit {
 
       console.log( 'this is re' , this.questionsList )
       this.showQuiz();
-    }, error => alert("error on search: " + error ) );
+    }, error => alert( "error on search: " + error ) );
   }
+
   showQuiz(){
       this.ctrRandom = Math.floor( Math.random() * ( this.questionsList.search.length - 1 + 1 ) ) + 0;
-      this.currentQuestion = this.questionsList.search[this.ctrRandom];
+      this.currentQuestion = this.questionsList.search[ this.ctrRandom ];
       if( this.ctrRandom ) this.loading = false;
   }
 
-  onClickProceed( val ){
-    this.x = 0;
+  onClickProceed( val? ){
+    this.keyIndex = 0;
     this.choices = [];
     this.getChoices();
     if( this.validateQuiz( val ) == false ) return;
@@ -115,7 +133,7 @@ export class QuiztestComponent implements OnInit {
     this.ctr+=1;
     if( val == this.currentQuestion.varchar_5 ){
       this.score+= 2;
-      console.log('check')
+      console.log( 'check' )
     }
     this.randomizedQuestions();
   }

@@ -34,6 +34,7 @@ English Quiz Module
 ####Dec 7, 2016 02:46PM Hide parameters to prevent users from changing the results
 ####Dec 7, 2016 08:00PM Moved the admin/user checking to the login/authentication component
 ####Dec 9, 2016 04:46AM Randomized Choices with keyindex
+####Dec 9, 2016 05:30AM Quiz Timer
 
 ###TODOs
 ####Timer
