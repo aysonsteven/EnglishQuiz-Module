@@ -32,7 +32,7 @@ English Quiz Module
 ####Dec 7, 2016 03:30AM Let non registered user to take quiz
 ####Dec 7, 2016 10:40AM Searching/filtering
 ####Dec 7, 2016 02:46PM Hide parameters to prevent users from changing the results
-####Dec 7, 2016 08:00PM Check User/Admin
+####Dec 7, 2016 08:00PM Moved the admin/user checking to the login/authentication component
 
 
 ###TODOs
