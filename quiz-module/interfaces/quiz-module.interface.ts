@@ -1,27 +1,34 @@
+export const CODE_PRIMARY_PHOTO = 'primary_photo';
+
 export interface PHILGO_API_RESPONSE {
-    acl: string;
-    action: string;
-    code: number;
-    domain: string;
+    acl?: string;
+    action?: string;
+    code?: number;
+    domain?: string;
     event?: any;
-    id: string;
-    idx_member: string;
+    id?: string;
+    idx_member?: string;
     message?: string;
     mode?: string;
-    module: string;
-    post_id: string;
-    post_name: string;
-    register_mode: string;
-    session_id: string;
-    site: string;
-    user_id: any;
-    user_name: string;
-    version: string;
+    module?: string;
+    post_id?: string;
+    post_name?: string;
+    register_mode?: string;
+    session_id?: string;
+    site?: string;
+    user_id?: any;
+    user_name?: string;
+    user_stamp?: string;
+    user_url_primary_photo?: string; // for user primary photo.
+    version?: string;
     idx?: any; // for post/comment update.
-}
-export interface MEMBER_DATA {
+};
+export interface PHILGO_RESPONSE extends PHILGO_API_RESPONSE {};
+
+export interface MEMBER_DATA extends PHILGO_API_RESPONSE {
+    idx?: string;
+    stamp?: string;
   id : string;
-  session_id? : string;
   nickname : string;
   password: string;
   name: string;
@@ -102,6 +109,52 @@ export interface MEMBER_DATA {
 };
 
 
+export interface MEMBER_LOGIN_DATA {
+    idx?: string;
+    stamp?: string;
+    id: string;             // member.id
+    password?: string;      // member.password
+    // idx?: string;           // member.idx. 회원 번호가 없이, 회원 아이디 + 세션 아이디로 로그인 가능하다.
+    session_id?: string;    // member session_id
+};
+export interface MEMBER_LOGIN extends MEMBER_LOGIN_DATA {};
+
+
+export interface MEMBER_REGISTER_DATA extends MEMBER_DATA {
+
+};
+
+export interface MEMBER_REGISTER_RESPONSE_DATA extends PHILGO_API_RESPONSE {
+
+};
+
+
+
+export interface FILE_UPLOAD_DATA {
+    code: string;
+    idx: number;
+    name: string;
+    path: string;
+    result: number;
+    src_org: string;
+    url: string;
+    url_thumbnail: string;
+    gid?: string; // @Warning 'gid' is not returned from server. you must keep it by yourself.
+};
+export interface FILE_UPLOAD_RESPONSE extends PHILGO_API_RESPONSE {
+    data: FILE_UPLOAD_DATA;
+};
+
+export interface FILE_DELETE_RESPONSE extends PHILGO_API_RESPONSE {
+    data: {
+        code: number;
+        idx: number;
+        message?: string;
+    }
+}
+
+
+
 export interface SEARCH_QUERY_DATA {
     fields: string;
     from: string;
@@ -109,22 +162,12 @@ export interface SEARCH_QUERY_DATA {
     where?: string;
     orderby?: string;
     limit?: string;
-}
-
-
-export interface MEMBER_LOGIN_DATA {
-    id: string;             // member.id
-    password?: string;      // member.password
-    // idx?: string;           // member.idx. 회원 번호가 없이, 회원 아이디 + 세션 아이디로 로그인 가능하다.
-    session_id?: string;    // member session_id
 };
-
 
 export interface PAGE_DATA {
     post_id: string;
     page_no: number;
     limit?: number;
-    category?: string;
 };
 
 export interface POST_AD {
@@ -138,6 +181,7 @@ export interface POST_AD {
     subject: string;
     url: string;
 };
+
 export interface POST_TOP_AD {
     category: string;
     gid: string;
@@ -171,6 +215,7 @@ export interface MEMBER {
     name: string;
     nickname: string;
 };
+
 export interface COMMENT {
     bad: string;
     blind: string;
@@ -189,7 +234,8 @@ export interface COMMENT {
     post_id: string;
     stamp: string;
     user_name: string;
-}
+};
+
 export interface POST {
     bad: string;
     blind: string;
@@ -214,18 +260,13 @@ export interface POST {
     stamp: string;
     subject: string;
     user_name: string;
-    varchar_1?
-    varchar_2?
-    varchar_3?
-    varchar_4
-    int_1
-}
+};
 
 export interface PHOTOS {
     idx: number;
     src: string;
     original_src: string;   
-}
+};
 
 export interface POSTS extends PHILGO_API_RESPONSE {
     ads: Array<POST_AD>;
@@ -285,6 +326,7 @@ export interface POST_DATA {
     bad?
     access_code?
     region?
+    photos?
     int_1?
     int_2?
     int_3?

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Quiz, POST_DATA} from '../../../quiz-module/services/quiz.service'
+import { Quiz, POST_DATA} from '../../../quiz-module/services/quiz.service';
+import { Data, FILE_UPLOAD_RESPONSE, FILE_UPLOAD_DATA, POST_RESPONSE } from '../../../quiz-module/data'
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { AuthsessionService } from './../../../services/auth-session.service'
+import { AuthsessionService } from './../../../services/auth-session.service';
 
 
 @Component({
@@ -10,7 +11,9 @@ import { AuthsessionService } from './../../../services/auth-session.service'
   styleUrls: ['./quizbuilder-form.component.scss']
 })
 export class QuizbuilderComponent implements OnInit {
-
+  files: Array<FILE_UPLOAD_DATA> = <Array<FILE_UPLOAD_DATA>>[];
+  switch:boolean =true;
+  loading:boolean = false;
   idx;
   formStatus = {};
   enableBtn:boolean = true;
@@ -19,19 +22,18 @@ export class QuizbuilderComponent implements OnInit {
 
   category:string;
   constructor( 
+    private activatedRoute: ActivatedRoute,
     private question: Quiz, 
     private routes: Router, 
     private route: ActivatedRoute,
-    public sessionSrvc: AuthsessionService 
+    public sessionSrvc: AuthsessionService,
+    private data: Data 
     ) { 
-      if ( this.sessionSrvc.sessionData.session_id != '00f9f98f9b41f684afabbe3c77e63eb7' && this.sessionSrvc.sessionData.id == 'aysonsteven' ) {
-        // console.log('session: ', this.sessionSrvc.sessionData.session_id)
-        this.routes.navigate(['']);
-        return;
-      }
-    this.route.params.forEach( ( params: Params ) =>{
-      this.idx = +params['idx'];
-    })
+    this.sessionSrvc.adminData();
+    this.sessionSrvc.checkLoginData();      
+    this.questionForm.gid = data.uniqid();
+    this.idx = this.route.snapshot.params['idx'];
+    
     // this.idx = localStorage.getItem('question-idx');
       this.getQustion();
   }
@@ -40,8 +42,18 @@ export class QuizbuilderComponent implements OnInit {
 
   }
 
-  public changeSuccessMessage() {
-
+  onChangeFile( event ){
+    this.loading = true;
+    this.data.uploadPostFile( this.questionForm.gid, event, (re: FILE_UPLOAD_RESPONSE) =>{
+      this.files.push( re.data );
+      this.loading = false;
+    }, err=>{this.loading = false;}, 
+    complete=>{
+      console.log( 'completed', complete )
+    },
+     percentage=>{
+       console.log('uploaded' , percentage)
+    } )
   }
 
   onClickAddChoices(){}

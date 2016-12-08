@@ -19,12 +19,9 @@ export class QuestionListComponent implements OnInit {
     private route: Router, 
     private questions: Quiz,
     public sessionSrvc: AuthsessionService
-    ) { 
-      if( this.sessionSrvc.sessionData.session_id != this.sessionSrvc.adminroute.id && this.sessionSrvc.sessionData.id != 'aysonsteven' ){
-        console.log('no permission')
-        this.route.navigate(['quizhome']);
-        return;
-      }
+    ) {
+    this.sessionSrvc.adminData(); 
+    this.sessionSrvc.checkLoginData();
     this.getQuestions();
   }
 

@@ -3,7 +3,12 @@ import { User, MEMBER_DATA, MEMBER_LOGIN_DATA } from '../quiz-module/services/us
 import { Router } from '@angular/router';
 import { AuthsessionService } from '../services/auth-session.service';
 import 'rxjs/add/operator/timeout';
-
+interface status{
+  userID?:string;
+  userPassword?: string;
+  error?:string;
+  loader?:string;
+}
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.component.html',
@@ -11,12 +16,7 @@ import 'rxjs/add/operator/timeout';
 })
 export class AuthenticationComponent implements OnInit {
 
-  formStatus = {
-    uid:'',
-    pword: '',
-    error: '',
-    loader: ''
-  }
+  formStatus:status = <status>{};
 
   blnk: string = " ";
   loading:boolean = true;
@@ -59,22 +59,26 @@ export class AuthenticationComponent implements OnInit {
     this.resetStatus();
   }
   resetStatus(){
-    this.formStatus = { uid: '', pword: '', error: '', loader: '' };
+    this.formStatus = { userID: '', userPassword: '', error: '', loader: '' };
+  }
+
+  onFocusUserID(){
+    this.formStatus.userID = '';
   }
 
   validateForm(){
     if( this.loginForm.id == null || this.loginForm.password == '' ){
-      this.formStatus.uid = 'insert UserID';
+      this.formStatus.userID = 'insert UserID';
       this.isValid = false;
     }else if( this.loginForm.id.length <= 2 ){
-      this.formStatus.uid = 'UserID must consist atleast 3 characters';
+      this.formStatus.userID = 'UserID must consist atleast 3 characters';
       this.isValid = false;
     }
     if( this.loginForm.password == null || this.loginForm.password == '' ){
-      this.formStatus.pword = 'insert password';
+      this.formStatus.userPassword = 'insert password';
       this.isValid = false;
     }else if( this.loginForm.password.length <= 5 ){
-      this.formStatus.pword = 'password must be 6 or more';
+      this.formStatus.userPassword = 'password must be 6 or more';
       this.isValid = false;
     }
   }

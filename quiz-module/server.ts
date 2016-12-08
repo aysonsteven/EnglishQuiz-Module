@@ -14,6 +14,9 @@ export class API {
     saveCache( cache_id, data ) {
         localStorage.setItem( cache_id, JSON.stringify(data) );
     }
+    uniqid (prefix?:any, moreEntropy?:any) {
+        return (new Date().getTime()).toString(36);
+    }
 
     getLoginData(): MEMBER_LOGIN_DATA{
         let data = localStorage.getItem( PHILGO_MEMBER_LOGIN );

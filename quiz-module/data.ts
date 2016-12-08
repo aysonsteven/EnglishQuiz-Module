@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Api } from './api';
-import { FILE_UPLOAD_RESPONSE, FILE_DELETE_RESPONSE, CODE_PRIMARY_PHOTO } from './philgo-api-interface';
-import { Member } from './member';
-export * from './philgo-api-interface';
+import { API } from './server';
+import { FILE_UPLOAD_RESPONSE, FILE_DELETE_RESPONSE, CODE_PRIMARY_PHOTO } from './interfaces/quiz-module.interface';
+import { User } from './services/user.service';
+export * from './interfaces/quiz-module.interface';
 
 import { FileUploader } from 'ng2-file-upload/file-upload/file-uploader.class';
 
@@ -31,11 +31,11 @@ declare var FileTransfer;
 
 
 @Injectable()
-export class Data extends Api {
+export class Data extends API {
     private uploader: FileUploader = Object();
     private result:FileUploadResponse = <FileUploadResponse> {};
     private urlFileServer: string = "http://file.philgo.com/index.php?module=ajax&submit=1&action=";
-    constructor( http: Http, private member: Member ) {
+    constructor( http: Http, private member: User ) {
         super( http );
     }
 
@@ -269,7 +269,7 @@ export class Data extends Api {
                 "status": status,
                 "headers": headers
             };
-            //console.log( 'onSuccessItem : ', this.result );
+            console.log( 'onSuccessItem : ', this.result );
         };
         this.uploader.onErrorItem = (item, response, status, headers) => {
             console.log('onFailureItem()');
@@ -280,7 +280,7 @@ export class Data extends Api {
                 "status": status,
                 "headers": headers
             };
-            //console.log( 'onErrorItem : ', this.result );
+            console.log( 'onErrorItem : ', this.result );
         };
         this.uploader.onProgressItem = ( item, progress ) => {
             try {
@@ -291,7 +291,7 @@ export class Data extends Api {
                 //console.log("onProgressItem: ", per );
             }
             catch ( e ) {
-                console.error( progress );
+                console.error('catch', progress );
             }
         };
         this.uploader.onCompleteAll = () => {

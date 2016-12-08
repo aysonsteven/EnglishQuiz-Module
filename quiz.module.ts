@@ -10,7 +10,7 @@ import { AuthsessionService } from './services/auth-session.service';
 import { User } from './quiz-module/services/user.service';
 import { Quiz } from './quiz-module/services/quiz.service';
 import { PlayerStatsService } from './services/player-stats.service';
-
+import { Data } from '../quizmodule/quiz-module/data';
 
 import { LayoutComponent } from './layout/layout.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
@@ -45,7 +45,7 @@ import { QuiztestFinalComponent } from './quiz/quiztest/quiztest-final/quiztest-
     RoutesModule,
     NgbModule.forRoot()
   ],
-  providers: [ AuthsessionService, User, Quiz, PlayerStatsService ],
+  providers: [ Data, AuthsessionService, User, Quiz, PlayerStatsService ],
   exports: [
     LayoutComponent,
     AuthenticationComponent,

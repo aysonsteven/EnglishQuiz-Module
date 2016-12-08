@@ -1,4 +1,11 @@
 <div class="container-fluid">
+
+  <button class="btn btn-secondary btn-sm" (click)="switch = ! switch">
+    <i class="fa fa-picture-o" aria-hidden="true" *ngIf="switch"> Photo Questions</i> 
+    <i class="fa fa-file-text-o" aria-hidden="true" *ngIf="!switch"> Grammar Questions</i>
+  </button>
+
+  <hr/>
   <form>
     <div class="form-group row">
       <label for="id" class="col-xs-3 col-form-label">Question</label>
@@ -11,12 +18,31 @@
         <div errorwrap *ngIf="formStatus.question">{{ formStatus.question }}</div>
     </div>
 
+    <div class="form-group row" *ngIf="!switch">
+      <label for="photo" class="col-xs-3 col-form-label">Picture</label>
+      <div class="col-xs-9">
+        <input  type="file" id="photo"  name="photo" #file (change)="onChangeFile($event, file.value)">
+      </div>
+    </div>
+
+    <div class="form-group row" *ngIf="loading">
+      <div class="col-xs-12">
+        <progress  class="progress" value="{{ progress }}" max="100">
+          <div class="progress">
+              <span class="progress-bar" [style.width]="widthProgress"></span>
+          </div>
+        </progress>
+      </div>
+    </div>
+
     <div class="form-group row">
       <label for="choice1" class="col-xs-3 col-form-label">Choice1</label>
       <div class="col-xs-9">
         <input class="form-control" type="text" id="choice1" [(ngModel)]="questionForm.varchar_1" name="choice1">
       </div>
     </div>
+
+
 
     <div class="form-group row">
       <label for="choice2" class="col-xs-3 col-form-label">Choice2</label>

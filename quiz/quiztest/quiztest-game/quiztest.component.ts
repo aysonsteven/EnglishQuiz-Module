@@ -4,6 +4,7 @@ import { POSTS, POST_DATA, PAGE_DATA, SEARCH_QUERY_DATA } from '../../../quiz-mo
 import { AuthsessionService } from '../../../services/auth-session.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PlayerStatsService } from './../../../services/player-stats.service';
+import * as _ from 'lodash'
 
 @Component({
   selector: 'app-quiztest',
@@ -11,6 +12,7 @@ import { PlayerStatsService } from './../../../services/player-stats.service';
   styleUrls: [ './quiztest.component.scss' ]
 })
 export class QuiztestComponent implements OnInit {
+  choices = [];
   loaderMessage:string;
   validate: string;
   loading:boolean = true;
@@ -28,7 +30,8 @@ export class QuiztestComponent implements OnInit {
     private router: Router, 
     private authSrvc: AuthsessionService, 
     private route:ActivatedRoute,
-    private playerStats: PlayerStatsService 
+    private playerStats: PlayerStatsService,
+    private activatedRoute: ActivatedRoute 
     ) { 
     
     this.ctrRandom = null;
@@ -44,17 +47,45 @@ export class QuiztestComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getChoices();
     if(this.authSrvc.sessionData)this.playerName = this.authSrvc.sessionData.id;
     else {
-      this.route.params.forEach( ( params: Params ) =>{
-             this.playerName = params[ 'id' ]
-            
-          })
+      this.playerName = this.activatedRoute.snapshot.params['id'];
           
     }
     if(! this.playerName) this.router.navigate( [ '' ] ) 
     this.currentQuestion = {};
     // if(! this.playerName ) this.router.navigate(['']);
+  }
+
+  getChoices(){
+    let data = <SEARCH_QUERY_DATA> {};
+    data.fields = "varchar_1, varchar_2, varchar_3, varchar_4";
+    data.from = "sf_post_data";
+    data.where = "post_id='job' AND category='quiz'";
+    this.questions.search( data, re=>{
+      let choicesObj = re.search[this.ctrRandom]
+
+    // for ( let key in choicesObj) {
+    //   this.choices.push(choicesObj[key]);
+    // }
+    // console.log('obj', choicesObj);
+    // console.log('arr',this.choices)
+    // console.log('randomize',this.choices.sort(function(a, b){return 0.5 - Math.random()}));
+
+    let obj = [
+      {key:'1', choice1:'test1' },
+      {key:'2', choice1:'test2' },
+      {key:'3', choice1:'test3' },
+      {key:'4', choice1:'test4' },
+      {key:'5', choice1:'test5' }
+    ];
+    console.log('shuffle', _.shuffle(choicesObj))
+        }, err=>{})
+  }
+
+  shuffle( choices ){
+
   }
 
   getQuestions(){

@@ -11,7 +11,7 @@ import { QuiztestFinalComponent } from './quiz/quiztest/quiztest-final/quiztest-
 import { QuizLogComponent } from './quiz/quiz-log/quiz-log.component';
 import { QuestionListComponent } from './quiz/quizbuilder/question-list/question-list.component';
 const link: Routes = [
-    { path: '', redirectTo:'/home', pathMatch: 'full' },
+    { path: '', redirectTo:'/adminhome', pathMatch: 'full' },
     { path: 'home', component: QuiztestHomeComponent },
     { path: 'adminhome', component: QuestionListComponent },
     { path: 'register', component: RegistrationComponent },
