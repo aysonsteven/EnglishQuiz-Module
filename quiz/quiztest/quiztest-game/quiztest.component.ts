@@ -77,7 +77,7 @@ export class QuiztestComponent implements OnInit {
   }
 
   getChoices(){
-    
+    /////TODO no requesting just restructure the previous object for choices randmozation
     let data = <SEARCH_QUERY_DATA> {};
     data.fields = "varchar_1, varchar_2, varchar_3, varchar_4";
     data.from = "sf_post_data";
@@ -90,6 +90,8 @@ export class QuiztestComponent implements OnInit {
         temp.push({key: this.keyIndex, value:choicesObj[key]});
       }
       this.choices = _.shuffle(temp)
+      console.log('check choices(()) ', temp)
+      console.log('this is the prevous structure of choiceobj',  choicesObj)
 
         }, err=>{
           console.error('err getting choices', err)
